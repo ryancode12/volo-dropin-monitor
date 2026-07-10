@@ -225,10 +225,41 @@ async function scrapeMatches() {
 
         if (!cardText) continue;
 
-        const link =
-          (element.matches("a[href]") && element) ||
-          element.closest("a[href]") ||
-          element.querySelector("a[href]");
+        // Prefer links that belong to the game card. Never use site-wide
+        // footer/header links such as Terms, Privacy, About, or Contact.
+        const cardNode = node || element;
+        const links = [
+          ...(cardNode.matches?.("a[href]") ? [cardNode] : []),
+          ...cardNode.querySelectorAll?.("a[href]") || [],
+        ];
+
+        const badDestination = (href) =>
+          !href ||
+          /\/(?:legal|terms|privacy|accessibility|about|contact)(?:\/|$|\?)/i.test(
+            href
+          );
+
+        const link = links
+          .filter((candidate) => !badDestination(candidate.href))
+          .sort((a, b) => {
+            const score = (candidate) => {
+              const text = normalize(
+                candidate.innerText || candidate.textContent
+              );
+              let value = 0;
+              if (/\b(?:register|sign up|join|claim|details|view)\b/i.test(text)) {
+                value += 20;
+              }
+              if (/\/(?:program|league|event|drop-?in|daily)/i.test(candidate.href)) {
+                value += 8;
+              }
+              if (!/\/discover(?:\/|$|\?)/i.test(candidate.href)) {
+                value += 4;
+              }
+              return value;
+            };
+            return score(b) - score(a);
+          })[0];
 
         candidates.push({
           title: cardText,
