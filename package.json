@@ -1,0 +1,13 @@
+{
+  "name": "volo-dropin-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloud Volo soccer drop-in monitor with ntfy phone alerts",
+  "scripts": {
+    "monitor": "node monitor.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

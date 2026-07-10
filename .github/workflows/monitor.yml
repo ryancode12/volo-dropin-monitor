@@ -1,0 +1,64 @@
+name: Volo Drop-In Monitor
+
+on:
+  schedule:
+    # GitHub's minimum supported interval is five minutes.
+    # Starting at minute 2 avoids the busiest top-of-hour scheduling period.
+    - cron: "2-59/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: volo-dropin-monitor
+  cancel-in-progress: false
+
+jobs:
+  check-volo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    env:
+      VOLO_URL: ${{ vars.VOLO_URL }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install monitor dependency
+        run: npm install --no-audit --no-fund
+
+      - name: Locate Chrome
+        run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Check Volo and send alerts
+        id: monitor
+        continue-on-error: true
+        run: npm run monitor
+
+      - name: Persist current listing state
+        if: always()
+        shell: bash
+        run: |
+          if ! git diff --quiet -- state.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state.json
+            git commit -m "chore: update Volo monitor state [skip ci]"
+            git push
+          else
+            echo "No state change to commit."
+          fi
+
+      - name: Mark workflow failed when monitor failed
+        if: steps.monitor.outcome == 'failure'
+        run: exit 1
