@@ -1,6 +1,55 @@
 {
-  "initialized": false,
-  "current": [],
+  "initialized": true,
+  "current": [
+    {
+      "id": "6fa26151e8f2c8a2b53d1145",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 4
+    },
+    {
+      "id": "15f30d148160b31605f8682c",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://volosports.com/legal/privacy",
+      "spots": 4
+    },
+    {
+      "id": "8cd4f0b9a52b6e6a0be71cef",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/denver",
+      "spots": 4
+    },
+    {
+      "id": "d8268d1bf315ea2823045751",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/discover?cityName=Denver&view=COURT%20RENTALS",
+      "spots": 4
+    },
+    {
+      "id": "f7f093da2b6f437acea3f5c7",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/legal",
+      "spots": 4
+    },
+    {
+      "id": "7ff13abfa0e7988e101c7387",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/about-us",
+      "spots": 4
+    },
+    {
+      "id": "9f0b96ca444bc4e781cc746e",
+      "title": "Saturday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 0:30am 4 spots",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 4
+    },
+    {
+      "id": "fceacbe13dd93d3e3a4af06e",
+      "title": "Sports Events Classes Volunteer Court Rentals League Daily Tournament Mon Tue Wed Thu Fri Sat Sun Pickup Drop-In Play with Friends Volo Pass - Member Exclusive Programs Premier Display Total With Fees Tomorrow Program Cover Image Drop-In Saturday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 0:30am 4 spots 1",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 4
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
