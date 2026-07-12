@@ -18,14 +18,14 @@ const replacement = String.raw`function parseEventDetails(text) {
     "(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)";
 
   const header = new RegExp(
-    \`Drop[\\s-]*In\\s+${weekdayPattern}\\s*-\\s*Soccer\\s*-\\s*(.*?)\\s*-\\s*Drop[\\s-]*In\\s+\`,
+    \`Drop[\\s-]*In\\s+\${weekdayPattern}\\s*-\\s*Soccer\\s*-\\s*(.*?)\\s*-\\s*Drop[\\s-]*In\\s+\`,
     "i"
   ).exec(normalized);
 
   const day =
     header?.[1] ??
-    new RegExp(\`${weekdayPattern}\\s*-\\s*Soccer\`, "i").exec(normalized)?.[1] ??
-    new RegExp(\`\\b${weekdayPattern}\\b\`, "i").exec(normalized)?.[1] ??
+    new RegExp(\`\${weekdayPattern}\\s*-\\s*Soccer\`, "i").exec(normalized)?.[1] ??
+    new RegExp(\`\\b\${weekdayPattern}\\b\`, "i").exec(normalized)?.[1] ??
     "Unknown day";
 
   const searchFrom = header
@@ -44,11 +44,11 @@ const replacement = String.raw`function parseEventDetails(text) {
     ...eventSection.matchAll(/\\b(\\d{1,2}:\\d{2})\\s*(am|pm)\\b/gi),
   ];
   const nonMidnightMatches = timeMatches.filter(
-    (match) => normalizeTime(\`${match[1]} ${match[2]}\`) !== "0:00am"
+    (match) => normalizeTime(\`\${match[1]} \${match[2]}\`) !== "0:00am"
   );
   const timeMatch = nonMidnightMatches.at(-1) ?? timeMatches.at(-1) ?? null;
   const time = timeMatch
-    ? normalizeTime(\`${timeMatch[1]} ${timeMatch[2]}\`)
+    ? normalizeTime(\`\${timeMatch[1]} \${timeMatch[2]}\`)
     : "Unknown time";
 
   let location = timeMatch
