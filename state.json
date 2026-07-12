@@ -2,6 +2,15 @@
   "initialized": true,
   "current": [
     {
+      "id": "78789cc99d924f2f6d68b018",
+      "title": "Sunday - Soccer - City Park - Drop-In City Park City Park 5:30pm 2 spots",
+      "day": "Sunday",
+      "time": "5:30pm",
+      "location": "Sunday - Soccer - City Park - City Park City Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 2
+    },
+    {
       "id": "bf241f42c3c51ca2ea01ccc0",
       "title": "Tuesday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 1:15am 1 spot",
       "day": "Tuesday",
