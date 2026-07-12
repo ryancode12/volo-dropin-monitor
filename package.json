@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Cloud Volo soccer drop-in monitor with ntfy phone alerts",
   "scripts": {
-    "monitor": "node monitor.mjs"
+    "monitor": "node patch-monitor.mjs && node monitor.mjs"
   },
   "dependencies": {
     "puppeteer-core": "^24.0.0"
