@@ -34,20 +34,83 @@ function cleanUrl(rawUrl) {
   return url.toString();
 }
 
-function stripChangingAvailability(text) {
-  return normalizeText(text)
-    .replace(/\b\d+\s+(?:men(?:'s)?\s+|women(?:'s)?\s+)?spots?\b/gi, "")
-    .replace(/\b(?:men|women)(?:'s)?(?:\s+spots?)?\s*[:\-]?\s*\d+\b/gi, "")
-    .replace(/\b\d+\s+(?:men|women)\b/gi, "")
+function normalizeTime(value) {
+  return normalizeText(value).replace(/\s+/g, "").toLowerCase();
+}
+
+function titleCase(value) {
+  return normalizeText(value)
+    .toLowerCase()
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function parseEventDetails(text) {
+  const normalized = normalizeText(text);
+  const weekdayPattern =
+    "(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)";
+
+  // Volo currently formats cards approximately as:
+  // Drop-In Monday - Soccer - Cherry Creek / Glendale -
+  // Drop-In Cherry Creek / Glendale Infinity Park 7:15pm 1 spot
+  const header = new RegExp(
+    `Drop[\\s-]*In\\s+${weekdayPattern}\\s*-\\s*Soccer\\s*-\\s*(.*?)\\s*-\\s*Drop[\\s-]*In\\s+`,
+    "i"
+  ).exec(normalized);
+
+  const day =
+    header?.[1] ??
+    new RegExp(`${weekdayPattern}\\s*-\\s*Soccer`, "i").exec(normalized)?.[1] ??
+    new RegExp(`\\b${weekdayPattern}\\b`, "i").exec(normalized)?.[1] ??
+    "Unknown day";
+
+  const searchFrom = header ? normalized.slice(header.index + header[0].length) : normalized;
+  const timeMatch = /\b(\d{1,2}:\d{2})\s*(am|pm)\b/i.exec(searchFrom);
+  const time = timeMatch
+    ? normalizeTime(`${timeMatch[1]} ${timeMatch[2]}`)
+    : "Unknown time";
+
+  let location = "";
+  if (timeMatch) {
+    location = normalizeText(searchFrom.slice(0, timeMatch.index));
+  }
+
+  const neighborhood = normalizeText(header?.[2] ?? "");
+  if (
+    neighborhood &&
+    location.toLowerCase().startsWith(neighborhood.toLowerCase())
+  ) {
+    location = normalizeText(location.slice(neighborhood.length));
+  }
+
+  location = location
+    .replace(/^(?:at|in)\s+/i, "")
+    .replace(/\b(?:today|tomorrow)\b/gi, "")
+    .replace(/\bprogram cover image\b/gi, "")
+    .replace(/\bdrop[\s-]*in\b/gi, "")
     .replace(/\s+/g, " ")
     .trim();
+
+  if (!location) {
+    // Fallback for slightly different card wording: use the final text segment
+    // before the start time.
+    const beforeTime = timeMatch
+      ? normalizeText(searchFrom.slice(0, timeMatch.index))
+      : "";
+    location = beforeTime.split(/\s+-\s+/).at(-1)?.trim() || "Location unavailable";
+  }
+
+  return {
+    day: titleCase(day),
+    time,
+    location: titleCase(location),
+  };
 }
 
 function stableId(match) {
   const url = cleanUrl(match.url);
   const parsed = new URL(url);
   const identity = /discover/i.test(parsed.pathname)
-    ? `${stripChangingAvailability(match.title)}|${url}`
+    ? `${match.day}|${match.time}|${match.location}`
     : url;
   return createHash("sha256").update(identity).digest("hex").slice(0, 24);
 }
@@ -174,80 +237,94 @@ async function scrapeMatches() {
         );
       });
 
-      const candidates = [];
-      const interactiveElements = [
-        ...document.querySelectorAll(
-          'a[href], button, [role="link"], [role="button"]'
-        ),
-      ];
-
-      for (const element of interactiveElements) {
-        if (
-          nonmatchingMarker &&
-          (nonmatchingMarker.compareDocumentPosition(element) &
-            Node.DOCUMENT_POSITION_FOLLOWING)
-        ) {
-          continue;
-        }
-
-        const excludedContainer = element.closest(
-          '[id*="nonmatch" i], [class*="nonmatch" i], ' +
-            '[id*="suggest" i], [class*="suggest" i]'
+      const isVisible = (element) => {
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return (
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          rect.width > 0 &&
+          rect.height > 0
         );
-        if (excludedContainer) continue;
+      };
 
-        let cardText = "";
-        let node = element;
+      const looksRelevant = (text) => {
+        const spots = availableSpots(text);
+        return (
+          /\bsoccer\b/i.test(text) &&
+          /\bdrop[\s-]*in\b/i.test(text) &&
+          spots !== null &&
+          spots > 0 &&
+          !/\b(?:sold out|full|waitlist only)\b/i.test(text) &&
+          /(?:\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b)/i.test(
+            text
+          )
+        );
+      };
 
-        for (
-          let depth = 0;
-          node && depth < 8;
-          depth += 1, node = node.parentElement
-        ) {
-          const text = normalize(node.innerText || node.textContent);
-          const spots = availableSpots(text);
+      const badDestination = (href) =>
+        !href ||
+        /\/(?:legal|terms|privacy|accessibility|about|contact)(?:\/|$|\?)/i.test(
+          href
+        );
 
-          const looksRelevant =
-            /\bsoccer\b/i.test(text) &&
-            /\bdrop[\s-]*in\b/i.test(text) &&
-            spots !== null &&
-            spots > 0 &&
-            !/\b(?:sold out|full|waitlist only)\b/i.test(text) &&
-            /(?:\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b|\b\d{1,2}:\d{2}\s*(?:am|pm)\b)/i.test(
-              text
-            );
-
-          if (looksRelevant && text.length >= 20 && text.length <= 1_200) {
-            cardText = text;
-            break;
+      const matchingElements = [...document.querySelectorAll("body *")]
+        .filter(isVisible)
+        .map((element) => ({
+          element,
+          text: normalize(element.innerText || element.textContent),
+        }))
+        .filter(({ element, text }) => {
+          if (text.length < 20 || text.length > 1_200 || !looksRelevant(text)) {
+            return false;
           }
-        }
 
-        if (!cardText) continue;
+          if (
+            nonmatchingMarker &&
+            (nonmatchingMarker.compareDocumentPosition(element) &
+              Node.DOCUMENT_POSITION_FOLLOWING)
+          ) {
+            return false;
+          }
 
-        // Prefer links that belong to the game card. Never use site-wide
-        // footer/header links such as Terms, Privacy, About, or Contact.
-        const cardNode = node || element;
-        const links = [
-          ...(cardNode.matches?.("a[href]") ? [cardNode] : []),
-          ...cardNode.querySelectorAll?.("a[href]") || [],
-        ];
-
-        const badDestination = (href) =>
-          !href ||
-          /\/(?:legal|terms|privacy|accessibility|about|contact)(?:\/|$|\?)/i.test(
-            href
+          return !element.closest(
+            '[id*="nonmatch" i], [class*="nonmatch" i], ' +
+              '[id*="suggest" i], [class*="suggest" i]'
           );
+        });
+
+      // Keep the smallest DOM container that still contains all event details.
+      const cardElements = matchingElements.filter(
+        ({ element, text }) =>
+          !matchingElements.some(
+            ({ element: other, text: otherText }) =>
+              other !== element &&
+              element.contains(other) &&
+              otherText.length < text.length
+          )
+      );
+
+      const candidates = [];
+      const seen = new Set();
+
+      for (const { element: cardNode, text: cardText } of cardElements) {
+        if (seen.has(cardText)) continue;
+        seen.add(cardText);
+
+        const links = [
+          ...(cardNode.matches("a[href]") ? [cardNode] : []),
+          ...cardNode.querySelectorAll("a[href]"),
+        ];
 
         const link = links
           .filter((candidate) => !badDestination(candidate.href))
           .sort((a, b) => {
             const score = (candidate) => {
-              const text = normalize(
+              const linkText = normalize(
                 candidate.innerText || candidate.textContent
               );
               let value = 0;
-              if (/\b(?:register|sign up|join|claim|details|view)\b/i.test(text)) {
+              if (/\b(?:register|sign up|join|claim|details|view)\b/i.test(linkText)) {
                 value += 20;
               }
               if (/\/(?:program|league|event|drop-?in|daily)/i.test(candidate.href)) {
@@ -287,8 +364,12 @@ async function scrapeMatches() {
     const deduplicated = new Map();
 
     for (const candidate of result.candidates) {
+      const details = parseEventDetails(candidate.title);
       const match = {
         title: truncate(candidate.title),
+        day: details.day,
+        time: details.time,
+        location: details.location,
         url: cleanUrl(candidate.url || result.finalUrl),
         spots: Number(candidate.spots),
       };
@@ -299,7 +380,9 @@ async function scrapeMatches() {
     }
 
     const matches = [...deduplicated.values()].sort((a, b) =>
-      a.title.localeCompare(b.title)
+      `${a.day}|${a.time}|${a.location}`.localeCompare(
+        `${b.day}|${b.time}|${b.location}`
+      )
     );
 
     // This output appears in the GitHub Actions log and is useful if Volo
@@ -348,7 +431,7 @@ async function main() {
     for (const match of newMatches) {
       await sendNotification({
         title: "Volo soccer drop-in available",
-        message: `${match.title}\n\nOpen Volo now to claim the spot.`,
+        message: `${match.day}, ${match.time}, ${match.location}`,
         click: match.url,
       });
     }
