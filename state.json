@@ -1,6 +1,25 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "8cd4f0b9a52b6e6a0be71cef",
+      "title": "NEW - COURT RENTALS Denver ▾ Volo Kids Corporate Contact Us Log In Sign Up City: Denver change Reset Filters Sports Day of Week Times Genders Program Types Pickup Practice Drop-In Clinic Neighborhoods Venues Skill Levels Program Tags Number of People Men - 1 + Women - 0 + Non-Binary - 0 + Volo Pass Membership Perks Sports Events Classes Volunteer Court Rent…",
+      "url": "https://www.volosports.com/denver",
+      "spots": 1
+    },
+    {
+      "id": "9d3de852cd60bc7354c0ae75",
+      "title": "Sports Events Classes Volunteer Court Rentals League Daily Tournament Mon Tue Wed Thu Fri Sat Sun Pickup Drop-In Play with Friends Volo Pass - Member Exclusive Programs Premier Display Total With Fees Tue Jul 14 Program Cover Image Drop-In Tuesday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 1:15am 1 spot 1",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 1
+    },
+    {
+      "id": "12b80b588e7eed2bc487db2a",
+      "title": "Tuesday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 1:15am 1 spot",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
