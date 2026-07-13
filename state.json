@@ -2,22 +2,13 @@
   "initialized": true,
   "current": [
     {
-      "id": "21dff45b2f9a13bdfda54e8a",
-      "title": "Tuesday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 0:00am 4 spots",
-      "day": "Tuesday",
-      "time": "0:00am",
-      "location": "Sloan'S Lake Hallack Park",
+      "id": "a3bda4ffabebb3ee1c36972a",
+      "title": "Thursday - Soccer - Lodo - Drop-In Lodo Metro State - Regency Athletic Complex 1:45am 1 spot",
+      "day": "Thursday",
+      "time": "1:45am",
+      "location": "Regency Athletic Complex",
       "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 4
-    },
-    {
-      "id": "6348262fbc20a76a0e039ca8",
-      "title": "Tuesday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 0:45am 5 spots",
-      "day": "Tuesday",
-      "time": "0:45am",
-      "location": "Sloan'S Lake Hallack Park",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 5
+      "spots": 1
     }
   ],
   "lastErrorDate": null,
