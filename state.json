@@ -2,13 +2,22 @@
   "initialized": true,
   "current": [
     {
-      "id": "6357ce7006650d5b61dcf157",
-      "title": "Wednesday - Soccer - City Park - Drop-In City Park City Park 0:00am 2 spots",
-      "day": "Wednesday",
+      "id": "21dff45b2f9a13bdfda54e8a",
+      "title": "Tuesday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 0:00am 4 spots",
+      "day": "Tuesday",
       "time": "0:00am",
-      "location": "City Park City Park",
+      "location": "Sloan'S Lake Hallack Park",
       "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 2
+      "spots": 4
+    },
+    {
+      "id": "6348262fbc20a76a0e039ca8",
+      "title": "Tuesday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 0:45am 5 spots",
+      "day": "Tuesday",
+      "time": "0:45am",
+      "location": "Sloan'S Lake Hallack Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 5
     }
   ],
   "lastErrorDate": null,
