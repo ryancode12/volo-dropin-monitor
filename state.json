@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "6357ce7006650d5b61dcf157",
+      "title": "Wednesday - Soccer - City Park - Drop-In City Park City Park 0:00am 2 spots",
+      "day": "Wednesday",
+      "time": "0:00am",
+      "location": "City Park City Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 2
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
