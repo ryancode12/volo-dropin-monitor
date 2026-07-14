@@ -1,7 +1,16 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const path = "monitor.mjs";
-const source = await readFile(path, "utf8");
+let source = await readFile(path, "utf8");
+
+const timezoneLine = '    await page.emulateTimezone("America/Denver");';
+const newPageLine = "    const page = await browser.newPage();";
+if (!source.includes(timezoneLine)) {
+  if (!source.includes(newPageLine)) {
+    throw new Error("Could not locate Puppeteer page creation in monitor.mjs");
+  }
+  source = source.replace(newPageLine, `${newPageLine}\n${timezoneLine}`);
+}
 
 const startMarker = "function parseEventDetails(text) {";
 const endMarker = "\n\nfunction stableId(match) {";
@@ -40,10 +49,7 @@ const replacement = [
   "  const timeMatches = [",
   "    ...eventSection.matchAll(/\\b(\\d{1,2}:\\d{2})\\s*(am|pm)\\b/gi),",
   "  ];",
-  "  const nonMidnightMatches = timeMatches.filter(",
-  "    (match) => normalizeTime(match[1] + \" \" + match[2]) !== \"0:00am\"",
-  "  );",
-  "  const timeMatch = nonMidnightMatches.at(-1) ?? timeMatches.at(-1) ?? null;",
+  "  const timeMatch = timeMatches.at(-1) ?? null;",
   "  const time = timeMatch",
   "    ? normalizeTime(timeMatch[1] + \" \" + timeMatch[2])",
   "    : \"Unknown time\";",
@@ -58,7 +64,6 @@ const replacement = [
   "    .replace(/\\b(?:today|tomorrow)\\b/gi, \"\")",
   "    .replace(/\\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\s+[A-Z][a-z]{2}\\s+\\d{1,2}\\b/gi, \"\")",
   "    .replace(/\\b\\d{1,2}\\/\\d{1,2}(?:\\/\\d{2,4})?\\b/g, \"\")",
-  "    .replace(/\\b0:00\\s*am\\b/gi, \"\")",
   "    .replace(/\\bprogram cover image\\b/gi, \"\")",
   "    .replace(/\\bdrop[\\s-]*in\\b/gi, \"\")",
   "    .replace(/^(?:at|in)\\s+/i, \"\")",
@@ -92,4 +97,4 @@ const replacement = [
 
 const updated = source.slice(0, start) + replacement + source.slice(end);
 await writeFile(path, updated, "utf8");
-console.log("Applied current Volo parser fixes.");
+console.log("Applied Denver timezone and current Volo parser fixes.");
