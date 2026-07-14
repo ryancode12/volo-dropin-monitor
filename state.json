@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "a3bda4ffabebb3ee1c36972a",
-      "title": "Thursday - Soccer - Lodo - Drop-In Lodo Metro State - Regency Athletic Complex 1:45am 1 spot",
-      "day": "Thursday",
-      "time": "1:45am",
-      "location": "Regency Athletic Complex",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 1
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
