@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "26dccdff198e98dca6fc542e",
-      "title": "Tuesday - Soccer - Montbello - Drop-In Montbello Parkfield Lake Park 7:00pm 5 spots",
-      "day": "Tuesday",
-      "time": "7:00pm",
-      "location": "Montbello Parkfield Lake Park",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 5
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
