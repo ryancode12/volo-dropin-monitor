@@ -2,13 +2,31 @@
   "initialized": true,
   "current": [
     {
+      "id": "a1691eb584201e2b60ef49c3",
+      "title": "Wednesday - Soccer - City Park - Drop-In City Park City Park 6:45pm 1 spot",
+      "day": "Wednesday",
+      "time": "6:45pm",
+      "location": "City Park City Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 1
+    },
+    {
+      "id": "a221daebab27d3cda1f47809",
+      "title": "Wednesday - Soccer - City Park - Drop-In City Park City Park 7:30pm 3 spots",
+      "day": "Wednesday",
+      "time": "7:30pm",
+      "location": "City Park City Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 3
+    },
+    {
       "id": "5b2c51fa2ba54a936b813037",
-      "title": "Wednesday - Soccer - Lodo - Drop-In Lodo Metro State - Regency Athletic Complex 7:45pm 1 spot",
+      "title": "Wednesday - Soccer - Lodo - Drop-In Lodo Metro State - Regency Athletic Complex 7:45pm 2 spots",
       "day": "Wednesday",
       "time": "7:45pm",
       "location": "Regency Athletic Complex",
       "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 1
+      "spots": 2
     }
   ],
   "lastErrorDate": null,
