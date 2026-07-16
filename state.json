@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "fcb9128b1c671a5550284a77",
-      "title": "Monday - Soccer - Aurora/Lowry - Drop-In Aurora/Lowry Aurora Sports Park 8:00pm 2 spots",
-      "day": "Monday",
-      "time": "8:00pm",
-      "location": "Aurora/Lowry Aurora Sports Park",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
