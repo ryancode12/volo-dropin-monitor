@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "d1892254eb8332d0f4f947c8",
-      "title": "Monday - Soccer - Wash Park - Drop-In Wash Park Veterans Park 6:15pm 2 spots",
-      "day": "Monday",
-      "time": "6:15pm",
-      "location": "Wash Park Veterans Park",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
