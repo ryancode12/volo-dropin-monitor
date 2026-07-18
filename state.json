@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "2de6268a372d0aeae6d7cbf6",
+      "title": "Monday - Soccer - Cherry Creek / Glendale - Drop-In Cherry Creek / Glendale Infinity Park 8:00pm 1 spot",
+      "day": "Monday",
+      "time": "8:00pm",
+      "location": "Cherry Creek / Glendale Infinity Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
