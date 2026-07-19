@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "f0a0b882772a2128a0d2e075",
+      "title": "Monday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 6:45pm 3 spots",
+      "day": "Monday",
+      "time": "6:45pm",
+      "location": "Sloan'S Lake Hallack Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 3
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-07"
 }
