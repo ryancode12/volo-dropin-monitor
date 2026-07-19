@@ -9,6 +9,15 @@
       "location": "Sloan'S Lake Hallack Park",
       "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
       "spots": 4
+    },
+    {
+      "id": "a4191be2bd35c2978e7d9bf4",
+      "title": "Sunday - Soccer - City Park - Drop-In City Park City Park 10:45am 2 spots",
+      "day": "Sunday",
+      "time": "10:45am",
+      "location": "City Park City Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 2
     }
   ],
   "lastErrorDate": null,
