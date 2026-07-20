@@ -2,22 +2,22 @@
   "initialized": true,
   "current": [
     {
+      "id": "d1892254eb8332d0f4f947c8",
+      "title": "Monday - Soccer - Wash Park - Drop-In Wash Park Veterans Park 6:15pm 4 spots",
+      "day": "Monday",
+      "time": "6:15pm",
+      "location": "Wash Park Veterans Park",
+      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
+      "spots": 4
+    },
+    {
       "id": "f0a0b882772a2128a0d2e075",
-      "title": "Monday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 6:45pm 5 spots",
+      "title": "Monday - Soccer - Sloan's Lake - Drop-In Sloan's Lake Hallack Park 6:45pm 1 spot",
       "day": "Monday",
       "time": "6:45pm",
       "location": "Sloan'S Lake Hallack Park",
       "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 5
-    },
-    {
-      "id": "fcb9128b1c671a5550284a77",
-      "title": "Monday - Soccer - Aurora/Lowry - Drop-In Aurora/Lowry Aurora Sports Park 8:00pm 2 spots",
-      "day": "Monday",
-      "time": "8:00pm",
-      "location": "Aurora/Lowry Aurora Sports Park",
-      "url": "https://www.volosports.com/legacy-discover?view=SPORTS&subView=DAILY&sportNames%5B0%5D=Soccer&programTypes%5B0%5D=DROPIN&minimumMen=1&cityName=Denver",
-      "spots": 2
+      "spots": 1
     }
   ],
   "lastErrorDate": null,
