@@ -66,12 +66,12 @@
     },
     {
       "id": "2d08affaee2ac653872f1c04",
-      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 7/22 · 6PM - 6:45PM $10/player Coed All Skills 7v7 3 spots",
+      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 7/22 · 6PM - 6:45PM $10/player Coed All Skills 7v7 1 spot",
       "day": "Wednesday",
       "time": "6:45pm",
       "location": "City Park City Park · 6pm -",
       "url": "https://www.volosports.com/game/823147a0-b30f-4fef-92b3-0311cff1cc7d",
-      "spots": 3
+      "spots": 1
     },
     {
       "id": "9b51b7416bb12888b1390214",
@@ -80,6 +80,15 @@
       "time": "7:15pm",
       "location": "Cherry Creek / Glendale Infinity Park ·",
       "url": "https://www.volosports.com/game/c6410e20-e8a7-48f5-a659-cda438e83233",
+      "spots": 1
+    },
+    {
+      "id": "1451a3f5cbdad7f397855966",
+      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 7/22 · 6:45PM - 7:30PM $10/player Coed All Skills 7v7 1 spot",
+      "day": "Wednesday",
+      "time": "7:30pm",
+      "location": "City Park City Park · 6:45pm -",
+      "url": "https://www.volosports.com/game/3fdddaf9-a6e0-418b-8482-0208b7e64dec",
       "spots": 1
     }
   ],
