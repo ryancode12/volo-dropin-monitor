@@ -2,31 +2,40 @@
   "initialized": true,
   "current": [
     {
-      "id": "a56573f52e152c3129a6b5cd",
-      "title": "Drop In Tomorrow Monday - Soccer - Cherry Creek / Glendale Infinity Park Tomorrow 7/27 · 8PM - 8:45PM $10/player Coed Skills (2) 7v7 2 spots",
+      "id": "bb80738c5456b94c37154736",
+      "title": "Drop In Tomorrow Monday - Soccer - Wash Park Veterans Park Tomorrow 7/27 · 6:15PM - 7PM $10/player Coed All Skills 7v7 1 spot",
       "day": "Monday",
-      "time": "8:45pm",
-      "location": "Cherry Creek / Glendale Infinity Park · 8pm -",
-      "url": "https://www.volosports.com/game/f89d2516-4dbf-465c-a973-1307ef2aa22d",
-      "spots": 2
+      "time": "6:15pm",
+      "location": "Wash Park Veterans Park ·",
+      "url": "https://www.volosports.com/game/0bb64778-9d24-4bde-9f2e-abc254f8fabe",
+      "spots": 1
     },
     {
       "id": "8c9b2476210db1f9a5445f5b",
-      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 7/27 · 9PM - 9:50PM $2/player Coed Skills (2) 11v11 6 spots",
+      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 7/27 · 9PM - 9:50PM $2/player Coed Skills (2) 11v11 5 spots",
       "day": "Monday",
       "time": "9:50pm",
       "location": "Northfield Dick'S Sporting Goods Park · 9pm -",
       "url": "https://www.volosports.com/game/6e6b6214-4a2c-43e7-8cad-1b2cc0df0b37",
-      "spots": 6
+      "spots": 5
     },
     {
       "id": "4500be17d44072c64c45d261",
-      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 7/27 · 8PM - 9PM $2/player Coed Skills (2) 11v11 6 spots",
+      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 7/27 · 8PM - 9PM $2/player Coed Skills (2) 11v11 5 spots",
       "day": "Monday",
       "time": "Unknown time",
       "location": "Location Unavailable",
       "url": "https://www.volosports.com/game/8c5636b9-771e-4fe0-929b-9ef6b8ce622e",
-      "spots": 6
+      "spots": 5
+    },
+    {
+      "id": "e38017e8ab5ed05d6885fa60",
+      "title": "Drop In Today Sunday - Soccer - Barnum East Barnum East Park Today 7/26 · 6PM - 6:45PM $10/player Coed All Skills 7v7 4 spots",
+      "day": "Sunday",
+      "time": "6:45pm",
+      "location": "Barnum East Barnum East Park · 6pm -",
+      "url": "https://www.volosports.com/game/3385e4c7-9882-47e5-bc19-08e8de3fe865",
+      "spots": 4
     },
     {
       "id": "2387a1f12716e532d9c7503c",
@@ -48,12 +57,12 @@
     },
     {
       "id": "0711edaf0401c25cc7c5bc73",
-      "title": "Drop In Wednesday Wednesday - Soccer - City Park City Park 7/29 · 7:30PM - 8:15PM $10/player Coed All Skills 7v7 2 spots",
+      "title": "Drop In Wednesday Wednesday - Soccer - City Park City Park 7/29 · 7:30PM - 8:15PM $10/player Coed All Skills 7v7 1 spot",
       "day": "Wednesday",
       "time": "8:15pm",
       "location": "City Park City Park · 7:30pm -",
       "url": "https://www.volosports.com/game/92979c5d-17dd-4026-a0fe-4c6f026856ec",
-      "spots": 2
+      "spots": 1
     }
   ],
   "lastErrorDate": null,
