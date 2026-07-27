@@ -20,7 +20,10 @@ jobs:
     timeout-minutes: 5
 
     env:
-      VOLO_URL: ${{ vars.VOLO_URL }}
+      # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
+      # separate inventory, even though a man can register for either one.
+      # The monitor verifies gender eligibility on each game's details page.
+      VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
     steps:
