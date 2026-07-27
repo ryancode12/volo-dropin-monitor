@@ -2,6 +2,15 @@
   "initialized": true,
   "current": [
     {
+      "id": "bb80738c5456b94c37154736",
+      "title": "Drop In Today Monday - Soccer - Wash Park Veterans Park Today 7/27 · 6:15PM - 7PM $10/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "6:15pm",
+      "location": "Wash Park Veterans Park ·",
+      "url": "https://www.volosports.com/game/0bb64778-9d24-4bde-9f2e-abc254f8fabe",
+      "spots": 1
+    },
+    {
       "id": "1088146763e1cb278640bdfb",
       "title": "Drop In Today Monday - Soccer - Wash Park Veterans Park Today 7/27 · 7PM - 7:45PM $10/player Coed All Skills 7v7 1 spot",
       "day": "Monday",
@@ -18,6 +27,15 @@
       "location": "Northfield Dick'S Sporting Goods Park · 7pm -",
       "url": "https://www.volosports.com/game/b383b8d8-2efe-45b7-b599-100b50a060df",
       "spots": 3
+    },
+    {
+      "id": "f2cb3545e091a25c393af28a",
+      "title": "Drop In Today Monday - Soccer - Wash Park Veterans Park Today 7/27 · 7:45PM - 8:30PM $10/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "8:30pm",
+      "location": "Wash Park Veterans Park · 7:45pm -",
+      "url": "https://www.volosports.com/game/ce9b8a9f-fd4a-4f31-ab70-5189f04c86b1",
+      "spots": 1
     },
     {
       "id": "0901a5ded2071163fdacf0ec",
@@ -39,12 +57,12 @@
     },
     {
       "id": "4500be17d44072c64c45d261",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 7/27 · 8PM - 9PM $2/player Coed Skills (2) 11v11 6 spots",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 7/27 · 8PM - 9PM $2/player Coed Skills (2) 11v11 4 spots",
       "day": "Monday",
       "time": "Unknown time",
       "location": "Location Unavailable",
       "url": "https://www.volosports.com/game/8c5636b9-771e-4fe0-929b-9ef6b8ce622e",
-      "spots": 6
+      "spots": 4
     },
     {
       "id": "03152fd7d4bcef8f16b0c4e4",
