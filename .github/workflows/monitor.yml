@@ -1,4 +1,4 @@
-name: Volo Drop-In Monitor
+name: Volo Sports Monitor
 
 on:
   schedule:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: volo-dropin-monitor
+  group: volo-sports-monitor
   cancel-in-progress: false
 
 jobs:
@@ -49,10 +49,10 @@ jobs:
         if: always()
         shell: bash
         run: |
-          if ! git diff --quiet -- state.json; then
+          if ! git diff --quiet -- state.json pickleball-state.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state.json
+            git add state.json pickleball-state.json
             git commit -m "chore: update Volo monitor state [skip ci]"
             git push
           else
