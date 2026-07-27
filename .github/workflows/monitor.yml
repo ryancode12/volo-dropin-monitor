@@ -1,4 +1,4 @@
-name: Volo Sports Monitor
+name: Volo Drop-In Monitor
 
 on:
   schedule:
