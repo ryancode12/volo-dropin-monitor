@@ -28,7 +28,7 @@ const replacement = [
   "    \"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\";",
   "",
   "  const header = new RegExp(",
-  "    \"Drop[\\\\s-]*In\\\\s+\" + weekdayPattern + \"\\\\s*-\\\\s*Soccer\\\\s*-\\\\s*(.*?)\\\\s*-\\\\s*Drop[\\\\s-]*In\\\\s+\",",
+  "    \"Drop[\\\\s-]*In\\\\s+\" + weekdayPattern + \"\\\\s*-\\\\s*Soccer\\\\s*-\\\\s*(.*?)\\\\s*-\\\\s*Drop[\\\\s-]*In\\\\s+\" ,",
   "    \"i\"",
   "  ).exec(normalized);",
   "",
@@ -95,6 +95,121 @@ const replacement = [
   "}",
 ].join("\n");
 
-const updated = source.slice(0, start) + replacement + source.slice(end);
-await writeFile(path, updated, "utf8");
-console.log("Applied Denver timezone and current Volo parser fixes.");
+source = source.slice(0, start) + replacement + source.slice(end);
+
+const scrapeMarker = "async function scrapeMatches() {";
+if (!source.includes("async function hasMensAvailability(")) {
+  if (!source.includes(scrapeMarker)) {
+    throw new Error("Could not locate scrapeMatches in monitor.mjs");
+  }
+
+  const mensAvailabilityHelper = [
+    "async function hasMensAvailability(browser, rawUrl) {",
+    "  const url = cleanUrl(rawUrl);",
+    "  const parsed = new URL(url);",
+    "",
+    "  // A generic discovery page cannot prove which gender owns the open spot.",
+    "  // Be conservative and do not alert unless the game page can be checked.",
+    "  if (/\\/discover(?:\\/|$)/i.test(parsed.pathname)) {",
+    "    console.log(\"Skipping unverified generic discovery URL: \" + url);",
+    "    return false;",
+    "  }",
+    "",
+    "  const detailsPage = await browser.newPage();",
+    "  try {",
+    "    await detailsPage.emulateTimezone(\"America/Denver\");",
+    "    await detailsPage.setViewport({ width: 1440, height: 1200, deviceScaleFactor: 1 });",
+    "    await detailsPage.setUserAgent(",
+    "      \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \" +",
+    "        \"(KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"",
+    "    );",
+    "",
+    "    await detailsPage.setRequestInterception(true);",
+    "    detailsPage.on(\"request\", (request) => {",
+    "      const blockedTypes = new Set([\"image\", \"media\", \"font\"]);",
+    "      if (blockedTypes.has(request.resourceType())) request.abort();",
+    "      else request.continue();",
+    "    });",
+    "",
+    "    await detailsPage.goto(url, {",
+    "      waitUntil: \"domcontentloaded\",",
+    "      timeout: 45_000,",
+    "    });",
+    "    await detailsPage.waitForNetworkIdle({ idleTime: 1_000, timeout: 20_000 }).catch(() => {});",
+    "    await new Promise((resolve) => setTimeout(resolve, 1_500));",
+    "",
+    "    const pageText = await detailsPage.evaluate(() =>",
+    "      String(document.body?.innerText ?? \"\").replace(/\\s+/g, \" \" ).trim()",
+    "    );",
+    "",
+    "    const readCount = (patterns) => {",
+    "      for (const pattern of patterns) {",
+    "        const match = pageText.match(pattern);",
+    "        if (match) return Number(match[1]);",
+    "      }",
+    "      return null;",
+    "    };",
+    "",
+    "    const menCount = readCount([",
+    "      /\\bmen(?:'s)?(?:\\s+only)?\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "      /\\b(\\d+)\\s+men(?:'s)?(?:\\s+only)?\\b/i,",
+    "    ]);",
+    "    const womenCount = readCount([",
+    "      /\\bwomen(?:'s)?(?:\\s+only)?\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "      /\\b(\\d+)\\s+women(?:'s)?(?:\\s+only)?\\b/i,",
+    "    ]);",
+    "",
+    "    if (menCount !== null) {",
+    "      return menCount > 0;",
+    "    }",
+    "",
+    "    // Example from Volo: \"Total Spot(s) Available 1 Women Only 1\".",
+    "    // A positive women-only count with no men's count must never alert.",
+    "    if (womenCount !== null && womenCount > 0) {",
+    "      console.log(\"Skipping women-only availability: \" + url);",
+    "      return false;",
+    "    }",
+    "",
+    "    const totalCount = readCount([",
+    "      /\\btotal spot\\(s\\) available\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "      /\\btotal spots? available\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "    ]);",
+    "",
+    "    // No gender restriction shown means the spot is available without a",
+    "    // women-only limitation and can be treated as available to a man.",
+    "    if (totalCount !== null) return totalCount > 0;",
+    "",
+    "    console.log(\"Could not verify men's availability: \" + url);",
+    "    return false;",
+    "  } finally {",
+    "    await detailsPage.close();",
+    "  }",
+    "}",
+    "",
+  ].join("\n");
+
+  source = source.replace(scrapeMarker, mensAvailabilityHelper + scrapeMarker);
+}
+
+const idMarker = "      const id = stableId(match);";
+const mensCheck = [
+  "      if (!(await hasMensAvailability(browser, match.url))) {",
+  "        console.log(",
+  "          \"Skipping listing without a verified men's spot: \" +",
+  "            match.day + \" | \" + match.time + \" | \" + match.location",
+  "        );",
+  "        continue;",
+  "      }",
+  "",
+  idMarker,
+].join("\n");
+
+if (!source.includes("Skipping listing without a verified men's spot:")) {
+  if (!source.includes(idMarker)) {
+    throw new Error("Could not locate match ID creation in monitor.mjs");
+  }
+  source = source.replace(idMarker, mensCheck);
+}
+
+await writeFile(path, source, "utf8");
+console.log("Applied Denver timezone, event parsing, and men's-spot verification fixes.");
