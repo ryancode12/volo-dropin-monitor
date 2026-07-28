@@ -158,13 +158,18 @@ if (!source.includes("async function hasMensAvailability(")) {
     "      /\\bwomen(?:'s)?(?:\\s+only)?\\s*[:\\-]?\\s*(\\d+)\\b/i,",
     "      /\\b(\\d+)\\s+women(?:'s)?(?:\\s+only)?\\b/i,",
     "    ]);",
+    "    const anyGenderCount = readCount([",
+    "      /\\bany\\s+gender\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "      /\\b(\\d+)\\s+any\\s+gender\\b/i,",
+    "      /\\bno\\s+preference\\s*[:\\-]?\\s*(\\d+)\\b/i,",
+    "    ]);",
     "",
-    "    if (menCount !== null) {",
-    "      return menCount > 0;",
+    "    // A man can register for either a men's spot or an any-gender spot.",
+    "    if ((menCount ?? 0) > 0 || (anyGenderCount ?? 0) > 0) {",
+    "      return true;",
     "    }",
     "",
-    "    // Example from Volo: \"Total Spot(s) Available 1 Women Only 1\".",
-    "    // A positive women-only count with no men's count must never alert.",
+    "    // Reject only when the remaining inventory is explicitly women-only.",
     "    if (womenCount !== null && womenCount > 0) {",
     "      console.log(\"Skipping women-only availability: \" + url);",
     "      return false;",
@@ -175,11 +180,10 @@ if (!source.includes("async function hasMensAvailability(")) {
     "      /\\btotal spots? available\\s*[:\\-]?\\s*(\\d+)\\b/i,",
     "    ]);",
     "",
-    "    // No gender restriction shown means the spot is available without a",
-    "    // women-only limitation and can be treated as available to a man.",
+    "    // When no gender category is shown, an open total is treated as eligible.",
     "    if (totalCount !== null) return totalCount > 0;",
     "",
-    "    console.log(\"Could not verify men's availability: \" + url);",
+    "    console.log(\"Could not verify men's or any-gender availability: \" + url);",
     "    return false;",
     "  } finally {",
     "    await detailsPage.close();",
@@ -195,7 +199,7 @@ const idMarker = "      const id = stableId(match);";
 const mensCheck = [
   "      if (!(await hasMensAvailability(browser, match.url))) {",
   "        console.log(",
-  "          \"Skipping listing without a verified men's spot: \" +",
+  "          \"Skipping listing without a verified men's or any-gender spot: \" +",
   "            match.day + \" | \" + match.time + \" | \" + match.location",
   "        );",
   "        continue;",
@@ -204,7 +208,7 @@ const mensCheck = [
   idMarker,
 ].join("\n");
 
-if (!source.includes("Skipping listing without a verified men's spot:")) {
+if (!source.includes("Skipping listing without a verified men's or any-gender spot:")) {
   if (!source.includes(idMarker)) {
     throw new Error("Could not locate match ID creation in monitor.mjs");
   }
@@ -212,4 +216,4 @@ if (!source.includes("Skipping listing without a verified men's spot:")) {
 }
 
 await writeFile(path, source, "utf8");
-console.log("Applied Denver timezone, event parsing, and men's-spot verification fixes.");
+console.log("Applied Denver timezone, event parsing, and men's/any-gender spot verification fixes.");
