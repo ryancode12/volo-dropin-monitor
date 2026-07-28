@@ -12,9 +12,15 @@ on:
         required: false
         default: false
         type: boolean
+      calendar_sync_test:
+        description: "Test Volo dashboard login and Google Calendar access"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: volo-sports-monitor
@@ -23,7 +29,7 @@ concurrency:
 jobs:
   check-volo:
     runs-on: ubuntu-24.04
-    timeout-minutes: 8
+    timeout-minutes: 12
 
     env:
       # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
@@ -40,6 +46,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Authenticate to Google Cloud
+        if: github.event_name == 'workflow_dispatch' && inputs.calendar_sync_test
+        id: google-auth
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/calendar
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -55,6 +72,16 @@ jobs:
         id: monitor
         continue-on-error: true
         run: npm run monitor
+
+      - name: Test Volo dashboard and Google Calendar access
+        if: github.event_name == 'workflow_dispatch' && inputs.calendar_sync_test
+        env:
+          VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
+          VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
+          GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
+          GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: node volo-calendar-diagnostic.mjs
 
       - name: Persist current listing state
         if: always()
