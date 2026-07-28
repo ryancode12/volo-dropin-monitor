@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer-core";
 
 const LOGIN_URL = "https://www.volosports.com/login";
-const DASHBOARD_FALLBACK_URL = "https://www.volosports.com/dashboard";
+const DASHBOARD_URL = "https://www.volosports.com/app/dashboard";
 const CHROME_PATH = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const TIMEZONE = "America/Denver";
 
@@ -21,6 +21,22 @@ function normalizeText(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }
 
+function safeUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl);
+    return `${url.origin}${url.pathname}`;
+  } catch {
+    return String(rawUrl ?? "").slice(0, 250);
+  }
+}
+
+function sanitize(value) {
+  return normalizeText(value)
+    .replaceAll(VOLO_EMAIL, "[email]")
+    .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, "Bearer [redacted]")
+    .replace(/\b(?:access|refresh|id)[_-]?token\b\s*[:=]\s*["']?[^"',\s}]+/gi, "$&[redacted]");
+}
+
 async function notify(title, message, priority = "3", tags = "calendar,white_check_mark") {
   const response = await fetch(`https://ntfy.sh/${encodeURIComponent(NTFY_TOPIC)}`, {
     method: "POST",
@@ -32,6 +48,7 @@ async function notify(title, message, priority = "3", tags = "calendar,white_che
     },
     body: message,
   });
+
   if (!response.ok) {
     throw new Error(`ntfy returned HTTP ${response.status}: ${await response.text()}`);
   }
@@ -49,7 +66,7 @@ async function verifyCalendarAccess() {
 
   if (!response.ok) {
     throw new Error(
-      `Google Calendar access failed with HTTP ${response.status}: ${normalizeText(
+      `Google Calendar access failed with HTTP ${response.status}: ${sanitize(
         await response.text()
       ).slice(0, 300)}`
     );
@@ -123,6 +140,236 @@ async function submitLogin(page) {
   await new Promise((resolve) => setTimeout(resolve, 2_000));
 }
 
+function extractJsonEventCandidates(value, sourceUrl, output, depth = 0) {
+  if (depth > 8 || value == null) return;
+
+  if (Array.isArray(value)) {
+    for (const item of value.slice(0, 500)) {
+      extractJsonEventCandidates(item, sourceUrl, output, depth + 1);
+    }
+    return;
+  }
+
+  if (typeof value !== "object") return;
+
+  const keys = Object.keys(value);
+  const compact = JSON.stringify(value);
+  const hasSport = /\b(?:soccer|pickleball)\b/i.test(compact);
+  const hasEventSignal =
+    /\b(?:game|pickup|drop.?in|registration|program|schedule|start.?time|start.?date|venue)\b/i.test(
+      compact
+    );
+
+  if (hasSport && hasEventSignal) {
+    const first = (...names) => {
+      for (const name of names) {
+        const candidate = value[name];
+        if (
+          candidate !== undefined &&
+          candidate !== null &&
+          ["string", "number"].includes(typeof candidate)
+        ) {
+          return normalizeText(candidate);
+        }
+      }
+      return "";
+    };
+
+    const candidate = {
+      source: safeUrl(sourceUrl),
+      id: first("gameId", "game_id", "registrationId", "registration_id", "id", "_id", "uuid"),
+      title: first(
+        "gameName",
+        "game_name",
+        "programName",
+        "program_name",
+        "name",
+        "title",
+        "sportName",
+        "sport_name"
+      ),
+      start: first(
+        "startDateTime",
+        "start_datetime",
+        "startsAt",
+        "starts_at",
+        "startTime",
+        "start_time",
+        "date",
+        "startDate",
+        "start_date"
+      ),
+      end: first("endDateTime", "end_datetime", "endsAt", "ends_at", "endTime", "end_time"),
+      location: first(
+        "venueName",
+        "venue_name",
+        "facilityName",
+        "facility_name",
+        "locationName",
+        "location_name",
+        "location",
+        "venue"
+      ),
+      status: first("registrationStatus", "registration_status", "status"),
+      keys: keys.slice(0, 20),
+    };
+
+    const identity = [
+      candidate.source,
+      candidate.id,
+      candidate.title,
+      candidate.start,
+      candidate.location,
+    ].join("|");
+
+    if (!output.some((item) => item.identity === identity)) {
+      output.push({ identity, ...candidate });
+    }
+  }
+
+  for (const key of keys.slice(0, 100)) {
+    extractJsonEventCandidates(value[key], sourceUrl, output, depth + 1);
+  }
+}
+
+async function collectDomSnapshot(page, label) {
+  return await page.evaluate((snapshotLabel) => {
+    const normalize = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const isVisible = (element) => {
+      const style = getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      return (
+        style.display !== "none" &&
+        style.visibility !== "hidden" &&
+        rect.width > 0 &&
+        rect.height > 0
+      );
+    };
+
+    const sportSignal = /\b(?:soccer|pickleball)\b/i;
+    const eventSignal =
+      /\b(?:am|pm|today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|pickup|drop-?in)\b/i;
+
+    const all = [...document.querySelectorAll("body *")]
+      .filter(isVisible)
+      .map((element) => ({
+        element,
+        text: normalize(element.innerText || element.textContent),
+      }))
+      .filter(
+        ({ text }) =>
+          text.length >= 15 &&
+          text.length <= 2_000 &&
+          sportSignal.test(text) &&
+          eventSignal.test(text)
+      );
+
+    const smallest = all.filter(
+      ({ element, text }) =>
+        !all.some(
+          ({ element: other, text: otherText }) =>
+            other !== element &&
+            element.contains(other) &&
+            otherText.length < text.length &&
+            sportSignal.test(otherText) &&
+            eventSignal.test(otherText)
+        )
+    );
+
+    const cards = [];
+    const seen = new Set();
+    for (const { element, text } of smallest) {
+      if (seen.has(text)) continue;
+      seen.add(text);
+
+      let link = element.closest("a[href]") || element.querySelector("a[href]");
+      if (!link) {
+        let parent = element.parentElement;
+        for (let depth = 0; depth < 5 && parent && !link; depth += 1) {
+          link = parent.matches("a[href]") ? parent : parent.querySelector("a[href]");
+          parent = parent.parentElement;
+        }
+      }
+
+      cards.push({
+        text: text.slice(0, 700),
+        url: link?.href || "",
+      });
+    }
+
+    const controls = [
+      ...document.querySelectorAll('button, a[href], [role="button"], [role="tab"]'),
+    ]
+      .filter(isVisible)
+      .map((element) => ({
+        text: normalize(
+          element.innerText ||
+            element.getAttribute("aria-label") ||
+            element.textContent ||
+            element.value
+        ),
+        href: element.href || "",
+      }))
+      .filter(({ text }) => text && text.length <= 120)
+      .slice(0, 200);
+
+    return {
+      label: snapshotLabel,
+      url: location.href,
+      title: document.title,
+      bodyHasSport: sportSignal.test(normalize(document.body?.innerText)),
+      cards,
+      controls,
+    };
+  }, label);
+}
+
+async function clickLikelyScheduleViews(page, snapshots) {
+  const labels = [
+    /^upcoming$/i,
+    /^my schedule$/i,
+    /^schedule$/i,
+    /^daily sports$/i,
+    /^drop-?ins?(?:\s*&\s*pickups?)?$/i,
+    /^pickups?$/i,
+  ];
+
+  for (const pattern of labels) {
+    const clickedLabel = await page.evaluate((source) => {
+      const pattern = new RegExp(source, "i");
+      const normalize = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+      const candidates = [
+        ...document.querySelectorAll('button, a[href], [role="button"], [role="tab"]'),
+      ];
+      const target = candidates.find((element) =>
+        pattern.test(
+          normalize(
+            element.innerText ||
+              element.getAttribute("aria-label") ||
+              element.textContent ||
+              element.value
+          )
+        )
+      );
+      if (!target) return null;
+      const label = normalize(
+        target.innerText ||
+          target.getAttribute("aria-label") ||
+          target.textContent ||
+          target.value
+      );
+      target.click();
+      return label;
+    }, pattern.source);
+
+    if (!clickedLabel) continue;
+
+    await page.waitForNetworkIdle({ idleTime: 750, timeout: 12_000 }).catch(() => {});
+    await new Promise((resolve) => setTimeout(resolve, 1_500));
+    snapshots.push(await collectDomSnapshot(page, `after clicking ${clickedLabel}`));
+  }
+}
+
 async function loginAndInspectDashboard() {
   const browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
@@ -135,9 +382,58 @@ async function loginAndInspectDashboard() {
     ],
   });
 
+  const apiResponses = [];
+  const jsonEventCandidates = [];
+  const snapshots = [];
+
   try {
     const page = await browser.newPage();
     await configurePage(page);
+
+    page.on("response", async (response) => {
+      try {
+        const contentType = response.headers()["content-type"] || "";
+        if (!/json/i.test(contentType)) return;
+
+        const url = response.url();
+        const text = await response.text();
+        if (text.length > 2_500_000) return;
+        if (
+          !/\b(?:soccer|pickleball)\b/i.test(text) ||
+          !/\b(?:game|pickup|drop.?in|registration|program|schedule|venue)\b/i.test(text)
+        ) {
+          return;
+        }
+
+        let parsed;
+        try {
+          parsed = JSON.parse(text);
+        } catch {
+          return;
+        }
+
+        const topLevelKeys =
+          parsed && typeof parsed === "object" && !Array.isArray(parsed)
+            ? Object.keys(parsed).slice(0, 30)
+            : Array.isArray(parsed)
+              ? [`array(${parsed.length})`]
+              : [];
+
+        const endpoint = safeUrl(url);
+        if (!apiResponses.some((item) => item.endpoint === endpoint)) {
+          apiResponses.push({
+            endpoint,
+            status: response.status(),
+            topLevelKeys,
+          });
+        }
+
+        extractJsonEventCandidates(parsed, url, jsonEventCandidates);
+      } catch {
+        // Some responses cannot be read twice or finish after the page closes.
+      }
+    });
+
     await page.goto(LOGIN_URL, { waitUntil: "domcontentloaded", timeout: 45_000 });
     await page.waitForNetworkIdle({ idleTime: 1_000, timeout: 20_000 }).catch(() => {});
     await submitLogin(page);
@@ -145,18 +441,6 @@ async function loginAndInspectDashboard() {
     const loginStatus = await page.evaluate(() => ({
       url: location.href,
       body: String(document.body?.innerText ?? "").replace(/\s+/g, " ").trim(),
-      dashboardLinks: [...document.querySelectorAll("a[href]")]
-        .map((link) => ({
-          href: link.href,
-          text: String(link.innerText || link.textContent || "")
-            .replace(/\s+/g, " ")
-            .trim(),
-        }))
-        .filter(
-          (link) =>
-            /dashboard|schedule|upcoming/i.test(link.text) ||
-            /dashboard|schedule/i.test(link.href)
-        ),
     }));
 
     if (
@@ -166,78 +450,64 @@ async function loginAndInspectDashboard() {
       throw new Error("Volo did not accept the stored email/password login.");
     }
 
-    const dashboardLink = loginStatus.dashboardLinks.find(
-      (link) => !/logout|login/i.test(link.href)
-    );
-
-    if (dashboardLink && dashboardLink.href !== page.url()) {
-      await page.goto(dashboardLink.href, {
+    if (!/\/app\/dashboard(?:\/|$|\?)/i.test(page.url())) {
+      await page.goto(DASHBOARD_URL, {
         waitUntil: "domcontentloaded",
         timeout: 45_000,
       });
-      await page.waitForNetworkIdle({ idleTime: 1_000, timeout: 20_000 }).catch(() => {});
-      await new Promise((resolve) => setTimeout(resolve, 1_500));
-    } else if (!/dashboard|schedule/i.test(page.url())) {
-      const response = await page
-        .goto(DASHBOARD_FALLBACK_URL, {
-          waitUntil: "domcontentloaded",
-          timeout: 45_000,
-        })
-        .catch(() => null);
-      if (response) {
-        await page.waitForNetworkIdle({ idleTime: 1_000, timeout: 20_000 }).catch(() => {});
-        await new Promise((resolve) => setTimeout(resolve, 1_500));
-      }
     }
 
-    const result = await page.evaluate(() => {
-      const normalize = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
-      const links = [...document.querySelectorAll('a[href*="/game/"]')];
-      const seen = new Set();
-      const games = [];
+    await page.waitForNetworkIdle({ idleTime: 1_000, timeout: 25_000 }).catch(() => {});
+    await new Promise((resolve) => setTimeout(resolve, 5_000));
 
-      for (const link of links) {
-        const url = link.href;
-        if (!url || seen.has(url)) continue;
-        seen.add(url);
-
-        let container = link;
-        for (let depth = 0; depth < 6; depth += 1) {
-          const parent = container.parentElement;
-          if (!parent) break;
-          const parentText = normalize(parent.innerText || parent.textContent);
-          if (parentText.length > 2_500) break;
-          container = parent;
-          if (
-            /\b(?:am|pm)\b/i.test(parentText) &&
-            /\b(?:soccer|pickleball|pickup|drop-?in)\b/i.test(parentText)
-          ) {
-            break;
-          }
-        }
-
-        games.push({
-          url,
-          text: normalize(container.innerText || container.textContent).slice(0, 500),
-        });
+    await page.evaluate(async () => {
+      for (let step = 0; step < 8; step += 1) {
+        window.scrollBy(0, Math.max(window.innerHeight * 0.8, 700));
+        await new Promise((resolve) => setTimeout(resolve, 250));
       }
-
-      return {
-        finalUrl: location.href,
-        title: document.title,
-        games,
-        bodyPreview: normalize(document.body?.innerText).slice(0, 1_500),
-      };
+      window.scrollTo(0, 0);
     });
 
-    if (/\/login(?:\/|$|\?)/i.test(result.finalUrl)) {
-      throw new Error("The dashboard redirected back to the Volo login page.");
+    snapshots.push(await collectDomSnapshot(page, "dashboard initial view"));
+    await clickLikelyScheduleViews(page, snapshots);
+
+    const allCards = [];
+    const seenCard = new Set();
+    for (const snapshot of snapshots) {
+      for (const card of snapshot.cards) {
+        const identity = `${card.url}|${card.text}`;
+        if (seenCard.has(identity)) continue;
+        seenCard.add(identity);
+        allCards.push({ snapshot: snapshot.label, ...card });
+      }
     }
 
-    return result;
+    return {
+      finalUrl: page.url(),
+      title: await page.title(),
+      cards: allCards,
+      snapshots: snapshots.map((snapshot) => ({
+        label: snapshot.label,
+        url: snapshot.url,
+        bodyHasSport: snapshot.bodyHasSport,
+        cardCount: snapshot.cards.length,
+        relevantControls: snapshot.controls
+          .filter((control) =>
+            /upcoming|schedule|daily|pickup|drop-?in|soccer|pickleball/i.test(control.text)
+          )
+          .slice(0, 30),
+      })),
+      apiResponses,
+      jsonEventCandidates: jsonEventCandidates.slice(0, 50),
+    };
   } finally {
     await browser.close();
   }
+}
+
+function eventSummary(event) {
+  const parts = [event.title, event.start, event.location, event.status].filter(Boolean);
+  return parts.join(" | ") || `${event.id || "event"} from ${event.source}`;
 }
 
 async function main() {
@@ -247,16 +517,33 @@ async function main() {
       loginAndInspectDashboard(),
     ]);
 
-    const examples = dashboard.games
+    const domExamples = dashboard.cards
+      .slice(0, 2)
+      .map((card, index) => `${index + 1}. ${sanitize(card.text).slice(0, 300)}`)
+      .join("\n");
+
+    const apiExamples = dashboard.jsonEventCandidates
+      .slice(0, 2)
+      .map((event, index) => `${index + 1}. ${sanitize(eventSummary(event)).slice(0, 300)}`)
+      .join("\n");
+
+    const endpointExamples = dashboard.apiResponses
       .slice(0, 3)
-      .map((game, index) => `${index + 1}. ${game.text || game.url}`)
+      .map((item) => item.endpoint)
       .join("\n");
 
     const message = [
       `Google calendar access: OK (${calendarName}).`,
       `Volo login: OK.`,
-      `Registered game links detected: ${dashboard.games.length}.`,
-      examples ? `Examples:\n${examples}` : `Dashboard URL checked: ${dashboard.finalUrl}`,
+      `Rendered session cards detected: ${dashboard.cards.length}.`,
+      `API event candidates detected: ${dashboard.jsonEventCandidates.length}.`,
+      domExamples
+        ? `Rendered examples:\n${domExamples}`
+        : apiExamples
+          ? `API examples:\n${apiExamples}`
+          : `Relevant API endpoints: ${dashboard.apiResponses.length}${
+              endpointExamples ? `\n${endpointExamples}` : ""
+            }`,
     ].join("\n");
 
     console.log(
@@ -265,8 +552,23 @@ async function main() {
           calendarName,
           dashboardUrl: dashboard.finalUrl,
           pageTitle: dashboard.title,
-          registeredGameLinks: dashboard.games,
-          bodyPreview: dashboard.bodyPreview,
+          renderedCardCount: dashboard.cards.length,
+          apiResponseCount: dashboard.apiResponses.length,
+          apiEventCandidateCount: dashboard.jsonEventCandidates.length,
+          snapshots: dashboard.snapshots,
+          apiResponses: dashboard.apiResponses,
+          apiEventCandidateFieldSummaries: dashboard.jsonEventCandidates.slice(0, 10).map(
+            (event) => ({
+              source: event.source,
+              hasId: Boolean(event.id),
+              hasTitle: Boolean(event.title),
+              hasStart: Boolean(event.start),
+              hasEnd: Boolean(event.end),
+              hasLocation: Boolean(event.location),
+              hasStatus: Boolean(event.status),
+              keys: event.keys,
+            })
+          ),
         },
         null,
         2
@@ -279,7 +581,7 @@ async function main() {
     console.error(error);
     await notify(
       "Volo calendar diagnostic failed",
-      normalizeText(message).slice(0, 600),
+      sanitize(message).slice(0, 600),
       "4",
       "calendar,warning"
     ).catch((notificationError) => {
