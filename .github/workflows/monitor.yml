@@ -6,6 +6,12 @@ on:
     # Starting at minute 2 avoids the busiest top-of-hour scheduling period.
     - cron: "2-59/5 * * * *"
   workflow_dispatch:
+    inputs:
+      pickleball_test:
+        description: "Send a pickleball diagnostic notification"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -17,13 +23,15 @@ concurrency:
 jobs:
   check-volo:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 8
 
     env:
       # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
       # separate inventory, even though a man can register for either one.
       # The monitor verifies gender eligibility on each game's details page.
       VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
+      PICKLEBALL_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=pickups&sports=pickleball&venues=club-volo-sobo-indoor
+      PICKLEBALL_TEST_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.pickleball_test || false }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
     steps:
