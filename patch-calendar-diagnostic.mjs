@@ -34,6 +34,16 @@ function candidateSearchText(event) {
     .join(" ");
 }
 
+function registrationEvidenceText(event) {
+  return [
+    event.source,
+    event.status,
+    ...(Array.isArray(event.keys) ? event.keys : []),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 function isFutureCandidate(event) {
   const timestamp = parseCandidateDate(event.start);
   if (timestamp === null) return false;
@@ -42,25 +52,37 @@ function isFutureCandidate(event) {
   return timestamp >= lowerBound && timestamp <= upperBound;
 }
 
-function isLikelyDailyRegistration(event) {
-  if (!isFutureCandidate(event)) return false;
-  const text = candidateSearchText(event);
-  const dailySignal = /pickup|drop.?in|daily.?sport|single.?game|game.?registration/i.test(text);
-  const registrationSignal = /register|participant|member|signup|roster|reservation|booking|dashboard|schedule/i.test(text);
-  const activeStatus = !/cancel|withdraw|refund|inactive|deleted|expired/i.test(event.status || "");
-  return dailySignal && registrationSignal && activeStatus;
+function isUserScopedCandidate(event) {
+  const evidence = registrationEvidenceText(event);
+  return /registration(?:_|\\b)|registered|participant|attendee|roster|signup|sign_up|reservation|booking|enrollment|enrolled|order(?:_|\\b)|user.?program|my.?schedule|dashboard/i.test(
+    evidence
+  );
 }
 
-function diagnosticCandidate(event) {
+function isLikelyDailyRegistration(event) {
+  if (!isFutureCandidate(event) || !isUserScopedCandidate(event)) return false;
+  const text = candidateSearchText(event);
+  const dailySignal = /pickup|drop.?in|daily.?sport|single.?game|game.?registration/i.test(text);
+  const activeStatus = !/cancel|withdraw|refund|inactive|deleted|expired/i.test(event.status || "");
+  return dailySignal && activeStatus;
+}
+
+function evidenceSummary(event) {
+  const keys = Array.isArray(event.keys) ? event.keys.slice(0, 12).join(", ") : "none";
+  return [
+    sanitize(eventSummary(event)).slice(0, 260),
+    \`Endpoint: \${sanitize(event.source)}\`,
+    \`ID present: \${event.id ? "yes" : "no"}; keys: \${sanitize(keys)}\`,
+  ].join("\\n");
+}
+
+function publicEvidence(event) {
   return {
-    id: event.id || null,
-    title: event.title || null,
-    start: event.start || null,
-    end: event.end || null,
-    location: event.location || null,
-    status: event.status || null,
     source: event.source,
-    keys: event.keys,
+    hasId: Boolean(event.id),
+    hasStart: Boolean(event.start),
+    status: event.status || null,
+    keys: Array.isArray(event.keys) ? event.keys : [],
   };
 }
 
@@ -74,40 +96,42 @@ async function main() {
     const futureCandidates = dashboard.jsonEventCandidates
       .filter(isFutureCandidate)
       .sort((a, b) => parseCandidateDate(a.start) - parseCandidateDate(b.start));
+    const userScopedCandidates = futureCandidates.filter(isUserScopedCandidate);
     const likelyDailyRegistrations = futureCandidates.filter(isLikelyDailyRegistration);
 
-    const candidateExamples = (likelyDailyRegistrations.length
+    const examples = (likelyDailyRegistrations.length
       ? likelyDailyRegistrations
-      : futureCandidates
+      : userScopedCandidates.length
+        ? userScopedCandidates
+        : futureCandidates
     )
       .slice(0, 5)
-      .map((event, index) => \`\${index + 1}. \${sanitize(eventSummary(event)).slice(0, 350)}\`)
-      .join("\\n");
+      .map((event, index) => \`\${index + 1}. \${evidenceSummary(event)}\`)
+      .join("\\n\\n");
 
     const message = [
       \`Google calendar access: OK (\${calendarName}).\`,
       "Volo login: OK.",
-      \`Rendered session cards detected: \${dashboard.cards.length}.\`,
-      \`API event candidates detected: \${dashboard.jsonEventCandidates.length}.\`,
       \`Future dated API candidates: \${futureCandidates.length}.\`,
+      \`User-scoped future candidates: \${userScopedCandidates.length}.\`,
       \`Likely upcoming daily registrations: \${likelyDailyRegistrations.length}.\`,
-      candidateExamples
-        ? \`Best structured examples:\\n\${candidateExamples}\`
-        : "No parseable future registration candidates were found.",
+      examples ? \`Registration evidence examples:\\n\${examples}\` : "No future candidates were found.",
     ].join("\\n");
 
+    // This repository is public. Log only field names and endpoint paths, not
+    // private event titles, locations, registration IDs, or user information.
     console.log(
       JSON.stringify(
         {
           calendarName,
           dashboardUrl: dashboard.finalUrl,
-          pageTitle: dashboard.title,
           renderedCardCount: dashboard.cards.length,
           apiResponseCount: dashboard.apiResponses.length,
           apiEventCandidateCount: dashboard.jsonEventCandidates.length,
-          futureCandidates: futureCandidates.slice(0, 30).map(diagnosticCandidate),
-          likelyDailyRegistrations: likelyDailyRegistrations.slice(0, 30).map(diagnosticCandidate),
-          snapshots: dashboard.snapshots,
+          futureCandidateCount: futureCandidates.length,
+          userScopedCandidateCount: userScopedCandidates.length,
+          likelyDailyRegistrationCount: likelyDailyRegistrations.length,
+          futureCandidateEvidence: futureCandidates.slice(0, 20).map(publicEvidence),
           apiResponses: dashboard.apiResponses,
         },
         null,
@@ -115,7 +139,7 @@ async function main() {
       )
     );
 
-    await notify("Volo calendar targeting diagnostic", message);
+    await notify("Volo registration evidence diagnostic", message);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(error);
@@ -136,4 +160,4 @@ await main();
 
 source = source.slice(0, start) + replacement;
 await writeFile(path, source, "utf8");
-console.log("Applied targeted upcoming-registration calendar diagnostic.");
+console.log("Applied user-registration evidence diagnostic.");
