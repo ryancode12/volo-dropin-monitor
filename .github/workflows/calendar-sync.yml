@@ -1,9 +1,6 @@
 name: Volo Calendar Sync
 
 on:
-  schedule:
-    # Run every 15 minutes, offset from the busiest quarter-hour boundaries.
-    - cron: "7-59/15 * * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -57,5 +54,5 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: node volo-calendar-sync.mjs
