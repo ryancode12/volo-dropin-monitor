@@ -6,7 +6,7 @@ let source = await readFile(path, "utf8");
 const oldConstant = `const DEFAULT_DURATION_MINUTES = 90;`;
 const newConstants = `const SOCCER_DURATION_MINUTES = 45;
 const PICKLEBALL_DURATION_MINUTES = 90;
-const DEFAULT_DURATION_MINUTES = 90;`;
+const DEFAULT_DURATION_MINUTES = 60;`;
 
 if (!source.includes(newConstants)) {
   if (!source.includes(oldConstant)) {
@@ -80,4 +80,4 @@ if (!source.includes(newExampleSuffix)) {
 }
 
 await writeFile(path, source, "utf8");
-console.log("Applied 45-minute soccer and 90-minute pickleball calendar durations.");
+console.log("Applied calendar durations: soccer 45 minutes, pickleball 90 minutes, fallback 60 minutes.");
