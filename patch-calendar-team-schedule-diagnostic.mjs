@@ -1,5 +1,5 @@
-import "./patch-calendar-soccer-route-discovery.mjs";
-import "./patch-calendar-team-schedule-game-values.mjs";
+await import("./patch-calendar-soccer-route-discovery.mjs");
+await import("./patch-calendar-team-schedule-game-values.mjs");
 import { readFile, writeFile } from "node:fs/promises";
 
 const path = "volo-calendar-operation-diagnostic.mjs";
