@@ -55,4 +55,4 @@ jobs:
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           DRY_RUN: ${{ inputs.dry_run }}
-        run: node volo-calendar-sync.mjs
+        run: node patch-calendar-sync-sport-durations.mjs && node volo-calendar-sync.mjs
