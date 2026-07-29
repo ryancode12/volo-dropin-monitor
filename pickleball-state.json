@@ -11,6 +11,17 @@
       "remaining": 1,
       "availabilitySource": "11/12 playing",
       "url": "https://www.volosports.com/d/8aedb0f4-95f5-44b9-a610-e5f279afeb22"
+    },
+    {
+      "id": "pickleball:a297496f701968b2b44311e6",
+      "day": "Wednesday",
+      "time": "6:30pm",
+      "location": "Club Volo SoBo - Indoor",
+      "registered": 10,
+      "capacity": 12,
+      "remaining": 2,
+      "availabilitySource": "10/12 playing",
+      "url": "https://www.volosports.com/d/ba792a06-6ee5-41a3-907c-a220c2f3e59d"
     }
   ],
   "alerted": [
