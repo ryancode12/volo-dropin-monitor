@@ -81,7 +81,7 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: node volo-calendar-rsvp-detail-diagnostic.mjs
+        run: node patch-calendar-rsvp-dashboard-date.mjs && node volo-calendar-rsvp-detail-diagnostic.mjs
 
       - name: Persist current listing state
         if: always()
