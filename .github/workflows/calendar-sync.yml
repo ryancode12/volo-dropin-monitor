@@ -1,0 +1,61 @@
+name: Volo Calendar Sync
+
+on:
+  schedule:
+    # Run every 15 minutes, offset from the busiest quarter-hour boundaries.
+    - cron: "7-59/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview changes without writing to Google Calendar"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: volo-calendar-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-calendar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: google-auth
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/calendar
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependency
+        run: npm install --no-audit --no-fund
+
+      - name: Locate Chrome
+        run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Sync registered Volo sessions
+        env:
+          VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
+          VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
+          GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
+          GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+        run: node volo-calendar-sync.mjs
