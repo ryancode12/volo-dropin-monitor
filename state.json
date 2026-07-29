@@ -2,12 +2,21 @@
   "initialized": true,
   "current": [
     {
-      "id": "0711edaf0401c25cc7c5bc73",
+      "id": "735b583079c5ae56ffccaf87",
+      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 7/29 · 6:45PM - 7:30PM $10/player Coed All Skills 7v7 2 spots",
+      "day": "Wednesday",
+      "time": "7:30pm",
+      "location": "City Park City Park · 6:45pm -",
+      "url": "https://www.volosports.com/game/8aad9d0b-92f6-4d47-99b7-c669f66f17ca",
+      "spots": 2
+    },
+    {
+      "id": "2d08affaee2ac653872f1c04",
       "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 7/29 · 7:30PM - 8:15PM $10/player Coed All Skills 7v7 2 spots",
       "day": "Wednesday",
       "time": "8:15pm",
       "location": "City Park City Park · 7:30pm -",
-      "url": "https://www.volosports.com/game/92979c5d-17dd-4026-a0fe-4c6f026856ec",
+      "url": "https://www.volosports.com/game/823147a0-b30f-4fef-92b3-0311cff1cc7d",
       "spots": 2
     }
   ],
