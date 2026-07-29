@@ -74,6 +74,13 @@ if (!source.includes("TeamSchedule operation-stage records:")) {
   source = source.replace(messageMarker, messageReplacement);
 }
 
+if (!source.includes("Soccer diagnostic version: route-context-v2.")) {
+  source = source.replace(
+    `      "Volo login: OK.",`,
+    `      "Volo login: OK.",\n      "Soccer diagnostic version: route-context-v2.",`
+  );
+}
+
 source = source.replace("Schedule-related controls:", "Soccer/team schedule-related controls:");
 source = source.replace("Relevant schema examples:", "TeamSchedule response structure:");
 
