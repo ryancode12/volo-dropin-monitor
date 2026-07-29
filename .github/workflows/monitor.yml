@@ -81,7 +81,7 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: node patch-calendar-diagnostic.mjs && node patch-calendar-graphql-diagnostic.mjs && node volo-calendar-diagnostic.mjs
+        run: node patch-calendar-diagnostic.mjs && node patch-calendar-graphql-diagnostic.mjs && node patch-calendar-userregistrants-tree.mjs && node volo-calendar-diagnostic.mjs
 
       - name: Persist current listing state
         if: always()
