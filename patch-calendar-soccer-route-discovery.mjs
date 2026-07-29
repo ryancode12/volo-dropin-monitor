@@ -7,14 +7,41 @@ source = source.replace(
   `const pattern = /upcoming|schedule|calendar|my games|games|events|activities|daily sports|pickup|drop-?in|reservation|registration/i;`,
   `const pattern = /soccer|team|league|program|season|upcoming|schedule|calendar|my games|games|events|activities|daily sports|pickup|drop-?in|reservation|registration/i;`
 );
-source = source.replace(`return results.slice(0, 40);`, `return results.slice(0, 100);`);
+source = source.replace(`return results.slice(0, 40);`, `return results.slice(0, 120);`);
+
+const oldTextBlock = `      const text = normalizeText(
+        element.innerText ||
+          element.getAttribute("aria-label") ||
+          element.textContent ||
+          element.value
+      );`;
+const newTextBlock = `      let text = normalizeText(
+        element.innerText ||
+          element.getAttribute("aria-label") ||
+          element.textContent ||
+          element.value
+      );
+      if (!text && element.matches("a[href]")) {
+        let ancestor = element.parentElement;
+        for (let depth = 0; ancestor && depth < 6; depth += 1, ancestor = ancestor.parentElement) {
+          const candidate = normalizeText(ancestor.innerText || ancestor.textContent);
+          if (candidate && candidate.length <= 700) {
+            text = candidate;
+            break;
+          }
+        }
+      }`;
+if (!source.includes(newTextBlock)) {
+  if (!source.includes(oldTextBlock)) throw new Error("Could not locate navigation text extraction.");
+  source = source.replaceAll(oldTextBlock, newTextBlock);
+}
 
 const oldLabels = `    const safeLabels = [...new Set(initialControls.map((item) => item.text).filter(Boolean))].slice(0, 10);`;
 const newLabels = `    const uniqueLabels = [...new Set(initialControls.map((item) => item.text).filter(Boolean))];
     const safeLabels = [
       ...uniqueLabels.filter((label) => /soccer|team|league/i.test(label)),
       ...uniqueLabels.filter((label) => !/soccer|team|league/i.test(label)),
-    ].slice(0, 12);`;
+    ].slice(0, 16);`;
 if (!source.includes(newLabels)) {
   if (!source.includes(oldLabels)) throw new Error("Could not locate navigation labels.");
   source = source.replace(oldLabels, newLabels);
@@ -35,11 +62,11 @@ const newPaths = `    const routeControls = [...new Map(
     const paths = [
       ...routeControls.filter((item) => /soccer|team|league/i.test(item.text || "")),
       ...routeControls.filter((item) => !/soccer|team|league/i.test(item.text || "")),
-    ].slice(0, 12).map((item) => item.path);`;
+    ].slice(0, 16).map((item) => item.path);`;
 if (!source.includes(newPaths)) {
   if (!source.includes(oldPaths)) throw new Error("Could not locate route list.");
   source = source.replace(oldPaths, newPaths);
 }
 
 await writeFile(path, source, "utf8");
-console.log("Applied soccer route discovery patch.");
+console.log("Applied soccer route discovery patch with dashboard card context.");
