@@ -1,3 +1,5 @@
+import "./patch-calendar-soccer-route-discovery.mjs";
+import "./patch-calendar-team-schedule-game-values.mjs";
 import { readFile, writeFile } from "node:fs/promises";
 
 const path = "volo-calendar-operation-diagnostic.mjs";
@@ -7,7 +9,7 @@ const relevantMarker = `    const relevant = diagnostic.operations.filter(isRele
     const schemaExamples = relevant
       .flatMap((operation) =>
         relevantSchemaLines(operation).map(
-          (line) => \`${"${operation.operationName} @ ${operation.stage}\\n${line}"}\`
+          (line) => \`${"${operation.operationName} @ ${operation.stage}\n${line}"}\`
         )
       )
       .slice(0, 8);`;
@@ -20,7 +22,7 @@ const targetedBlock = `    const teamScheduleRecords = diagnostic.operations.fil
       .flatMap((operation) =>
         operation.schema.slice(0, 40).map(
           (item) =>
-            \`${"${operation.operationName} @ ${operation.stage}\\n${item.path} [${item.typename}] keys: ${item.keys.join(\", \") || `(array length ${item.length ?? 0})`}"}\`
+            \`${"${operation.operationName} @ ${operation.stage}\n${item.path} [${item.typename}] keys: ${item.keys.join(\", \") || `(array length ${item.length ?? 0})`}"}\`
         )
       )
       .filter((line, index, array) => array.indexOf(line) === index)
@@ -72,14 +74,8 @@ if (!source.includes("TeamSchedule operation-stage records:")) {
   source = source.replace(messageMarker, messageReplacement);
 }
 
-source = source.replace(
-  "Schedule-related controls:",
-  "Soccer/team schedule-related controls:"
-);
-source = source.replace(
-  "Relevant schema examples:",
-  "TeamSchedule response structure:"
-);
+source = source.replace("Schedule-related controls:", "Soccer/team schedule-related controls:");
+source = source.replace("Relevant schema examples:", "TeamSchedule response structure:");
 
 await writeFile(path, source, "utf8");
 console.log("Applied TeamSchedule-focused GraphQL diagnostic patch.");
