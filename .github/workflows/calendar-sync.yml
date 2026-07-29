@@ -20,7 +20,7 @@ concurrency:
 jobs:
   sync-calendar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -47,7 +47,7 @@ jobs:
       - name: Locate Chrome
         run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
 
-      - name: Sync registered Volo sessions
+      - name: Sync registered pickup sessions
         env:
           VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
           VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
@@ -56,3 +56,13 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: node patch-calendar-sync-sport-durations.mjs && node volo-calendar-sync.mjs
+
+      - name: Sync registered soccer games
+        env:
+          VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
+          VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
+          GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
+          GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: node volo-calendar-soccer-sync.mjs
