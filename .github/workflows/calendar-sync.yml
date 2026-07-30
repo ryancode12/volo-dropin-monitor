@@ -1,6 +1,8 @@
 name: Volo Calendar Sync
 
 on:
+  schedule:
+    - cron: "7-59/15 * * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -20,7 +22,7 @@ concurrency:
 jobs:
   sync-calendar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Check out repository
@@ -54,8 +56,12 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          DRY_RUN: ${{ inputs.dry_run }}
-        run: node patch-calendar-sync-sport-durations.mjs && node volo-calendar-sync.mjs
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+        run: |
+          node patch-calendar-sync-sport-durations.mjs
+          node patch-calendar-sync-safe-deletion.mjs
+          node --check volo-calendar-sync.mjs
+          node volo-calendar-sync.mjs
 
       - name: Sync registered soccer games
         env:
@@ -64,5 +70,8 @@ jobs:
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          DRY_RUN: ${{ inputs.dry_run }}
-        run: node volo-calendar-soccer-sync.mjs
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+        run: |
+          node patch-calendar-soccer-safe-deletion.mjs
+          node --check volo-calendar-soccer-sync.mjs
+          node volo-calendar-soccer-sync.mjs
