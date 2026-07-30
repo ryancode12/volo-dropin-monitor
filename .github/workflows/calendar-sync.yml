@@ -49,6 +49,9 @@ jobs:
       - name: Locate Chrome
         run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
 
+      - name: Configure failure-only notifications
+        run: node patch-calendar-failure-only-notifications.mjs
+
       - name: Sync registered pickup sessions
         env:
           VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
