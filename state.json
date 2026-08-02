@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "1dda868dfc9edf4f5b52d264",
-      "title": "Drop In Today 30 for $30 Leagues (for members) Sunday - Soccer - City Park City Park Today 8/2 · 11:30AM - 12:15PM $10/player Coed All Skills 7v7 2 spots",
-      "day": "Sunday",
-      "time": "12:15pm",
-      "location": "City Park City Park · 11:30am -",
-      "url": "https://www.volosports.com/game/22da6e7f-398a-48d0-b346-04be8bbf95a6",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
