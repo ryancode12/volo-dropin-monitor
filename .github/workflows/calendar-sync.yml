@@ -76,5 +76,6 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
         run: |
           node patch-calendar-soccer-safe-deletion.mjs
+          node patch-calendar-soccer-team-scope.mjs
           node --check volo-calendar-soccer-sync.mjs
           node volo-calendar-soccer-sync.mjs
