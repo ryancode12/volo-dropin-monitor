@@ -1,18 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "pickleball:d5df2a509ecee8f9ebc90e5c",
-      "day": "Monday",
-      "time": "5:00pm",
-      "location": "Club Volo SoBo - Indoor",
-      "registered": 16,
-      "capacity": 18,
-      "remaining": 2,
-      "availabilitySource": "16/18 playing",
-      "url": "https://www.volosports.com/d/85c9988a-9c1e-445b-90b5-7d368622f8f3"
-    }
-  ],
+  "current": [],
   "alerted": [
     {
       "id": "pickleball:4346508aa93a974df923d6b8",
