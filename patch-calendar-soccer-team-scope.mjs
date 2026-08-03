@@ -65,7 +65,6 @@ const oldIdentityBlock = `        const fallbackIdentity = hashText(
 const canonicalIdentityBlock = `        const gameKey = canonicalSoccerGameKey({
           routeId: capture.program.routeId,
           startTimestamp: game.startTimestamp,
-          fieldName: game.fieldName,
           teamName: capture.program.teamName,
         });`;
 if (!source.includes("const gameKey = canonicalSoccerGameKey({")) {
@@ -77,12 +76,13 @@ if (!source.includes("const gameKey = canonicalSoccerGameKey({")) {
 
 if (!source.includes("function canonicalSoccerGameKey(")) {
   const marker = `function eventBody(game) {`;
-  const helpers = `function canonicalSoccerGameKey({ routeId, startTimestamp, fieldName, teamName }) {
+  const helpers = `function canonicalSoccerGameKey({ routeId, startTimestamp, teamName }) {
+  // A user team cannot have two distinct games at the exact same instant.
+  // Excluding field text makes migration stable when Volo omits or renames a field.
   return hashText(
     [
       normalize(routeId).toLowerCase(),
       String(startTimestamp),
-      normalize(fieldName).toLowerCase(),
       normalize(teamName).toLowerCase(),
     ].join("|")
   );
@@ -95,8 +95,7 @@ function existingSoccerEventCanonicalKey(event) {
   if (!routeId || !Number.isFinite(startTimestamp)) return "";
 
   const teamName = normalize((event.summary || "Soccer").replace(/^Soccer\\s*[—-]\\s*/i, ""));
-  const fieldName = normalize((event.location || "").split(/\\s+—\\s+/)[0]);
-  return canonicalSoccerGameKey({ routeId, startTimestamp, fieldName, teamName });
+  return canonicalSoccerGameKey({ routeId, startTimestamp, teamName });
 }
 
 `;
@@ -114,6 +113,7 @@ const oldExistingMap = `  const byGameKey = new Map();
   const presentGameKeys = new Set(games.map((game) => game.gameKey));`;
 const canonicalExistingMap = `  const byGameKey = new Map();
   const duplicateEvents = [];
+  const duplicateEventIds = new Set();
 
   for (const event of existing) {
     const storedGameKey = event.extendedProperties?.private?.voloGameKey || "";
@@ -131,6 +131,7 @@ const canonicalExistingMap = `  const byGameKey = new Map();
 
     if (duplicate) {
       duplicateEvents.push(event);
+      duplicateEventIds.add(event.id);
       continue;
     }
 
@@ -138,7 +139,7 @@ const canonicalExistingMap = `  const byGameKey = new Map();
   }
 
   const presentGameKeys = new Set(games.map((game) => game.gameKey));`;
-if (!source.includes("const duplicateEvents = [];")) {
+if (!source.includes("const duplicateEventIds = new Set();")) {
   if (!source.includes(oldExistingMap)) {
     throw new Error("Could not locate the existing soccer-event map.");
   }
@@ -178,12 +179,13 @@ if (!source.includes('reason: "duplicate"')) {
 const oldMissingIdentity = `    const gameKey = privateProperties.voloGameKey;
     const routeId = privateProperties.voloProgramRouteId;
     if (!gameKey || presentGameKeys.has(gameKey) || !routeId) continue;`;
-const canonicalMissingIdentity = `    const storedGameKey = privateProperties.voloGameKey;
+const canonicalMissingIdentity = `    if (duplicateEventIds.has(event.id)) continue;
+    const storedGameKey = privateProperties.voloGameKey;
     const canonicalGameKey = existingSoccerEventCanonicalKey(event);
     const gameKey = canonicalGameKey || storedGameKey;
     const routeId = privateProperties.voloProgramRouteId;
     if (!gameKey || presentGameKeys.has(gameKey) || !routeId) continue;`;
-if (!source.includes("const canonicalGameKey = existingSoccerEventCanonicalKey(event);")) {
+if (!source.includes("if (duplicateEventIds.has(event.id)) continue;")) {
   if (!source.includes(oldMissingIdentity)) {
     throw new Error("Could not locate soccer missing-event identity logic.");
   }
