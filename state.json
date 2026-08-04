@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "d120a2ab08e97b29e1218c57",
-      "title": "Drop In Tomorrow Tuesday - Soccer - DU Area University of Denver - Diane Wendt Field Tomorrow 8/4 · 9PM - 9:45PM $10/player Coed Skills (2) 7v7 2 spots",
-      "day": "Tuesday",
-      "time": "9:45pm",
-      "location": "Diane Wendt Field · 9pm -",
-      "url": "https://www.volosports.com/game/8f1eecb8-e40c-4ce3-bfb6-e33e38fd9775",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
