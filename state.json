@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "63d0194953ba4352196a562f",
+      "title": "Drop In Today Friday - 11v11 Coed Soccer - Cherry Creek / Glendale Infinity Park Today 8/7 · 8:40PM - 9:30PM $10/player Coed All Skills 11v11 3 spots",
+      "day": "Friday",
+      "time": "9:30pm",
+      "location": "Cherry Creek / Glendale Infinity Park · 8:40pm -",
+      "url": "https://www.volosports.com/game/f78aaed4-5333-4fbb-bdb6-912d63ae834c",
+      "spots": 3
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
