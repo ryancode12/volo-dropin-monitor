@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "c9ed5dea3610b75453180368",
-      "title": "Drop In Tomorrow Sunday - Soccer - Barnum East Barnum East Park Tomorrow 8/9 · 6:35PM - 7:20PM $FREE/player Coed All Skills 7v7 1 spot",
-      "day": "Sunday",
-      "time": "7:20pm",
-      "location": "Barnum East Barnum East Park · 6:35pm -",
-      "url": "https://www.volosports.com/game/8fcf4e70-a2ba-4a42-aafe-c3e4d8d3abdf",
-      "spots": 1
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
