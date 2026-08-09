@@ -3,20 +3,11 @@
   "current": [
     {
       "id": "1339c9bd6235e087d9717cf6",
-      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 8/10 · 7PM - 7:50PM $FREE/player Coed Skills (2) 11v11 5 spots",
+      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 8/10 · 7PM - 7:50PM $FREE/player Coed Skills (2) 11v11 3 spots",
       "day": "Monday",
       "time": "7:50pm",
       "location": "Northfield Dick'S Sporting Goods Park · 7pm -",
       "url": "https://www.volosports.com/game/37799340-3084-475c-9db9-dcc4262a87cb",
-      "spots": 5
-    },
-    {
-      "id": "9bc8c8c830477d2877c10df8",
-      "title": "Drop In Today Sunday - Soccer - Cherry Creek / Glendale Infinity Park Today 8/9 · 4PM - 4:45PM $FREE/player Coed All Skills 7v7 3 spots",
-      "day": "Sunday",
-      "time": "4:45pm",
-      "location": "Cherry Creek / Glendale Infinity Park · 4pm -",
-      "url": "https://www.volosports.com/game/4e8a08c5-4d06-416a-8f97-4e60201a3aa4",
       "spots": 3
     },
     {
@@ -27,6 +18,15 @@
       "location": "Cherry Creek / Glendale Infinity Park · 4:45pm -",
       "url": "https://www.volosports.com/game/4892d18d-2c8e-44a0-933f-0fc12078994e",
       "spots": 5
+    },
+    {
+      "id": "5eaadd3df689ea2792c43a8f",
+      "title": "Drop In Today Sunday - Soccer - Cherry Creek / Glendale Infinity Park Today 8/9 · 4:45PM - 5:30PM $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Sunday",
+      "time": "5:30pm",
+      "location": "Cherry Creek / Glendale Infinity Park · 4:45pm -",
+      "url": "https://www.volosports.com/game/c57965d9-8fdb-47e1-8af8-671ea7d623ab",
+      "spots": 2
     }
   ],
   "lastErrorDate": null,
