@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "572f12bc8ff90fc5a7389c25",
-      "title": "Drop In Thursday Thursday - Soccer - Northfield Dick's Sporting Goods Park 8/13 · 6:30PM - 7:20PM $FREE/player Coed Skills (2) 11v11 4 spots",
-      "day": "Thursday",
-      "time": "7:20pm",
-      "location": "Northfield Dick'S Sporting Goods Park · 6:30pm -",
-      "url": "https://www.volosports.com/game/e59ea0c1-541e-4642-969c-0663ee88d21a",
-      "spots": 4
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
