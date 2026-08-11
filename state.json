@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "c91c761cb0926dba28c90b31",
+      "title": "Drop In Today Tuesday - Soccer - DU Area University of Denver - Diane Wendt Field Today 8/11 · 7:40PM - 8:25PM $FREE/player Coed Skills (2) 7v7 1 spot",
+      "day": "Tuesday",
+      "time": "8:25pm",
+      "location": "Diane Wendt Field · 7:40pm -",
+      "url": "https://www.volosports.com/game/8a654bb6-6187-45fa-9a94-d8239504e7b7",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
