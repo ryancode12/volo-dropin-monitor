@@ -1,6 +1,18 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "pickleball:a1db5a80cc56cf9ab6bd5843",
+      "day": "Friday",
+      "time": "5:00pm",
+      "location": "Club Volo SoBo - Indoor",
+      "registered": 28,
+      "capacity": 30,
+      "remaining": 2,
+      "availabilitySource": "28/30 playing",
+      "url": "https://www.volosports.com/d/a0df523f-5848-4fa3-aa8d-98bbc2f13b5d"
+    }
+  ],
   "alerted": [
     {
       "id": "pickleball:4346508aa93a974df923d6b8",
@@ -81,6 +93,10 @@
     {
       "id": "pickleball:a4a7dac1eaea09e5449e3ccd",
       "alertedAt": "2026-08-10T22:54:53.637Z"
+    },
+    {
+      "id": "pickleball:a1db5a80cc56cf9ab6bd5843",
+      "alertedAt": "2026-08-11T22:32:45.030Z"
     }
   ],
   "lastErrorDate": null
