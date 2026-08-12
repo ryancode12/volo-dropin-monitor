@@ -2,22 +2,13 @@
   "initialized": true,
   "current": [
     {
-      "id": "2b68a0fa13573bc061c54a12",
-      "title": "Drop In Today Tuesday - Soccer - DU Area University of Denver - Diane Wendt Field Today 8/11 · 9:55PM - 10:40PM $FREE/player Coed Skills (2) 7v7 3 spots",
-      "day": "Tuesday",
-      "time": "10:40pm",
-      "location": "Diane Wendt Field · 9:55pm -",
-      "url": "https://www.volosports.com/game/c2c87479-4140-4ec8-b932-c5282f9e5b7b",
-      "spots": 3
-    },
-    {
       "id": "80dbfdce03827d70ab824cab",
-      "title": "Drop In Tomorrow Wednesday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 8/12 · 8PM - 8:50PM $FREE/player Coed Skills (2) 11v11 5 spots",
+      "title": "Drop In Tomorrow Wednesday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 8/12 · 8PM - 8:50PM $FREE/player Coed Skills (2) 11v11 4 spots",
       "day": "Wednesday",
       "time": "8:50pm",
       "location": "Northfield Dick'S Sporting Goods Park · 8pm -",
       "url": "https://www.volosports.com/game/c02fe334-46d9-4473-b59e-b32da9409056",
-      "spots": 5
+      "spots": 4
     }
   ],
   "lastErrorDate": null,
