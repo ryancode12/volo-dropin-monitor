@@ -1,6 +1,25 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "24f2ac7d05e2b724482a0c96",
+      "title": "Drop In Today Thursday - Soccer - DU Area University of Denver - Diane Wendt Field Today 8/13 · 7:40PM - 8:25PM $FREE/player Coed Skills (2) 7v7 1 spot",
+      "day": "Thursday",
+      "time": "8:25pm",
+      "location": "Diane Wendt Field · 7:40pm -",
+      "url": "https://www.volosports.com/game/4068a1b9-2160-4ab4-b09a-86f7d61a68f1",
+      "spots": 1
+    },
+    {
+      "id": "336fd30f5305f0a6a16eb540",
+      "title": "Drop In Today Thursday - Soccer - DU Area University of Denver - Diane Wendt Field Today 8/13 · 8:25PM - 9:10PM $FREE/player Coed Skills (2) 7v7 3 spots",
+      "day": "Thursday",
+      "time": "9:10pm",
+      "location": "Diane Wendt Field · 8:25pm -",
+      "url": "https://www.volosports.com/game/7092f21c-1782-4ff9-8aed-4daaefe0010a",
+      "spots": 3
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
