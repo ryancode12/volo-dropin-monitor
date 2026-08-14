@@ -3,7 +3,6 @@ import { spawn } from "node:child_process";
 const commands = [
   ["node", ["patch-monitor.mjs"]],
   ["node", ["monitor.mjs"]],
-  ["node", ["pickleball-monitor.mjs"]],
 ];
 
 let failed = false;
