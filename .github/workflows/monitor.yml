@@ -61,6 +61,23 @@ jobs:
       - name: Locate Chrome
         run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
 
+      - name: Increase browser protocol timeout
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'monitor.mjs';
+          let source = fs.readFileSync(path, 'utf8');
+          const marker = '  const browser = await puppeteer.launch({\n    executablePath: CHROME_PATH,';
+          const replacement = '  const browser = await puppeteer.launch({\n    executablePath: CHROME_PATH,\n    protocolTimeout: 300_000,';
+          if (!source.includes('protocolTimeout: 300_000')) {
+            if (!source.includes(marker)) throw new Error('Could not locate Puppeteer browser launch.');
+            source = source.replace(marker, replacement);
+            fs.writeFileSync(path, source);
+          }
+          NODE
+          node --check monitor.mjs
+
       - name: Check Volo and send alerts
         id: monitor
         continue-on-error: true
