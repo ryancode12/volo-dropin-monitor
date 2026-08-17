@@ -1,6 +1,25 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "21cbae2c2500d986d53f8b71",
+      "title": "Drop In Tomorrow Monday - Soccer - Wash Park Veterans Park Tomorrow 8/17 · 6PM - 6:45PM $FREE/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "6:45pm",
+      "location": "Wash Park Veterans Park · 6pm -",
+      "url": "https://www.volosports.com/game/2abea674-649c-4ea6-9d33-29aafc9b93c5",
+      "spots": 1
+    },
+    {
+      "id": "b5346af314fb1d94f15f7475",
+      "title": "Drop In Tomorrow Monday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 8/17 · 6:45PM - 7:30PM $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Monday",
+      "time": "7:30pm",
+      "location": "Northfield Dick'S Sporting Goods Park · 6:45pm -",
+      "url": "https://www.volosports.com/game/78514c8c-80f5-44f8-92c9-cf98ce8bb44a",
+      "spots": 2
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
