@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "8b8fca4e82679ed785f28522",
-      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 8/23 · 6PM - 6:45PM $FREE/player Coed All Skills 7v7 4 spots",
-      "day": "Sunday",
-      "time": "6:45pm",
-      "location": "Cherry Creek / Glendale Infinity Park · 6pm -",
-      "url": "https://www.volosports.com/game/8adc0cbb-a76a-4a6e-a6c4-4346b9922a13",
-      "spots": 4
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
