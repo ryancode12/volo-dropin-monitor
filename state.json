@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "0fb77e51cbd1676e6c33fc97",
+      "title": "Drop In Tomorrow Monday - Soccer - Wash Park Veterans Park Tomorrow 8/24 · 6:45PM - 7:30PM $FREE/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "7:30pm",
+      "location": "Wash Park Veterans Park · 6:45pm -",
+      "url": "https://www.volosports.com/game/291abc2a-060d-4932-bd8f-a82b10ed75ed",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
