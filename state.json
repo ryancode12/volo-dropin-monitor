@@ -3,12 +3,30 @@
   "current": [
     {
       "id": "989460911253de19838d388a",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 8/24 · 7PM - 7:50PM $FREE/player Coed Skills (2) 11v11 3 spots",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 8/24 · 7PM - 7:50PM $FREE/player Coed Skills (2) 11v11 1 spot",
       "day": "Monday",
       "time": "7:50pm",
       "location": "Northfield Dick'S Sporting Goods Park · 7pm -",
       "url": "https://www.volosports.com/game/f65ea849-a3d1-4628-ba41-1e842d7f2fa8",
-      "spots": 3
+      "spots": 1
+    },
+    {
+      "id": "3123f504b586d69bcffacb71",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 8/24 · 8:15PM - 9PM $FREE/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "8:15pm",
+      "location": "Northfield Dick'S Sporting Goods Park ·",
+      "url": "https://www.volosports.com/game/5419b3bc-091d-495f-9d64-2e0259e76eea",
+      "spots": 1
+    },
+    {
+      "id": "ce52d722ef47a30239ec60fb",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 8/24 · 7:30PM - 8:15PM $FREE/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "8:15pm",
+      "location": "Northfield Dick'S Sporting Goods Park · 7:30pm -",
+      "url": "https://www.volosports.com/game/b241c2b6-03cb-4342-b7f5-b6952d31b695",
+      "spots": 1
     }
   ],
   "lastErrorDate": null,
