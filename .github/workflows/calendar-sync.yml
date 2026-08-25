@@ -52,6 +52,9 @@ jobs:
       - name: Configure failure-only notifications
         run: node patch-calendar-failure-only-notifications.mjs
 
+      - name: Validate calendar resilience patch
+        run: node --check patch-calendar-browser-resilience.mjs
+
       - name: Sync registered pickup sessions
         env:
           VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
