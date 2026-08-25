@@ -25,6 +25,7 @@ const replacement = `function usableLocationValue(value) {
   if (/^[0-9a-f]{8}-[0-9a-f-]{20,}$/i.test(text)) return false;
   if (/^-?\\d+(?:\\.\\d+)?(?:,\\s*-?\\d+(?:\\.\\d+)?)?$/.test(text)) return false;
   if (/^\\d{4}-\\d{2}-\\d{2}T/i.test(text)) return false;
+  if (/^(?:sports?|games?|soccer|pickleball|volleyball|basketball|kickball|softball|football|dodgeball|cornhole|daily sports|volo sports|volo|drop[ -]?in|pickup)$/i.test(text)) return false;
   return true;
 }
 
@@ -46,7 +47,7 @@ function locationCandidateScore(path, value) {
   else if (/(?:venue|facility|location|site|park|field|court|space)/i.test(p)) score += 55;
 
   if (/(?:^|\\.)(?:name|title|label)$/i.test(p)) score += 25;
-  if (/\\b(?:park|field|sports?|club|arena|center|centre|stadium|complex|school|gym|court|facility)\\b/i.test(v)) {
+  if (/\\b(?:park|field|club|arena|center|centre|stadium|complex|school|gym|court|facility|academy|turf)\\b/i.test(v)) {
     score += 25;
   }
   if (/address|street|city|state|zip|postal/i.test(p)) score -= 35;
@@ -74,14 +75,12 @@ function locationForRsvp(scalars) {
   if (venue) return venue;
   if (field) return field;
 
-  // Last resort: use a strongly venue-like human-readable value even when Volo's
-  // field path is opaque or renamed.
   const fallback = scalars
     .map(({ path, value }) => ({ value: normalize(value), score: locationCandidateScore(path, value) }))
     .filter(
       (item) =>
         item.score >= 20 &&
-        /\\b(?:park|field|sports?|club|arena|center|centre|stadium|complex|school|gym|court|facility)\\b/i.test(
+        /\\b(?:park|field|club|arena|center|centre|stadium|complex|school|gym|court|facility|academy|turf)\\b/i.test(
           item.value
         )
     )
@@ -102,4 +101,4 @@ if (!source.includes('location: session.location || ""')) {
 }
 
 await writeFile(path, source, "utf8");
-console.log("Applied source-aware Volo RSVP location extraction.");
+console.log("Applied source-aware Volo RSVP location extraction with generic-text rejection.");
