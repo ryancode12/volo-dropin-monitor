@@ -22,7 +22,7 @@ concurrency:
 jobs:
   sync-calendar:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -52,27 +52,6 @@ jobs:
       - name: Configure failure-only notifications
         run: node patch-calendar-failure-only-notifications.mjs
 
-      - name: Increase calendar browser startup timeout
-        shell: bash
-        run: |
-          node <<'NODE'
-          const fs = require('node:fs');
-          for (const path of ['volo-calendar-sync.mjs', 'volo-calendar-soccer-sync.mjs']) {
-            let source = fs.readFileSync(path, 'utf8');
-            if (!source.includes('timeout: 120_000,')) {
-              const marker = '    executablePath: CHROME_PATH,\n    headless: true,';
-              const replacement = '    executablePath: CHROME_PATH,\n    timeout: 120_000,\n    protocolTimeout: 300_000,\n    headless: true,';
-              if (!source.includes(marker)) {
-                throw new Error(`Could not locate Puppeteer browser launch in ${path}.`);
-              }
-              source = source.replace(marker, replacement);
-              fs.writeFileSync(path, source);
-            }
-          }
-          NODE
-          node --check volo-calendar-sync.mjs
-          node --check volo-calendar-soccer-sync.mjs
-
       - name: Sync registered pickup sessions
         env:
           VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
@@ -84,6 +63,7 @@ jobs:
         run: |
           node patch-calendar-sync-sport-durations.mjs
           node patch-calendar-sync-safe-deletion.mjs
+          node patch-calendar-browser-resilience.mjs volo-calendar-sync.mjs
           node --check volo-calendar-sync.mjs
           node volo-calendar-sync.mjs
 
@@ -98,5 +78,6 @@ jobs:
         run: |
           node patch-calendar-soccer-safe-deletion.mjs
           node patch-calendar-soccer-team-scope.mjs
+          node patch-calendar-browser-resilience.mjs volo-calendar-soccer-sync.mjs
           node --check volo-calendar-soccer-sync.mjs
           node volo-calendar-soccer-sync.mjs
