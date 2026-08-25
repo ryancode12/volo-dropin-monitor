@@ -61,6 +61,7 @@ jobs:
           node --check patch-calendar-rsvp-title-and-timing.mjs
           node --check patch-calendar-rsvp-location.mjs
           node --check patch-calendar-rsvp-public-venue.mjs
+          node --check patch-calendar-location-clearing.mjs
 
       - name: Sync registered pickup sessions
         env:
@@ -79,6 +80,7 @@ jobs:
           node patch-calendar-rsvp-title-and-timing.mjs
           node patch-calendar-rsvp-location.mjs
           node patch-calendar-rsvp-public-venue.mjs
+          node patch-calendar-location-clearing.mjs
           node patch-calendar-browser-resilience.mjs volo-calendar-sync.mjs
           node --check volo-calendar-sync.mjs
           node volo-calendar-sync.mjs
