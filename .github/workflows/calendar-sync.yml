@@ -57,6 +57,7 @@ jobs:
           node --check patch-calendar-browser-resilience.mjs
           node --check patch-calendar-dashboard-card-context.mjs
           node --check patch-calendar-rsvp-graphql-fallback.mjs
+          node --check patch-calendar-rsvp-response-shape.mjs
 
       - name: Sync registered pickup sessions
         env:
@@ -71,6 +72,7 @@ jobs:
           node patch-calendar-sync-safe-deletion.mjs
           node patch-calendar-dashboard-card-context.mjs
           node patch-calendar-rsvp-graphql-fallback.mjs
+          node patch-calendar-rsvp-response-shape.mjs
           node patch-calendar-browser-resilience.mjs volo-calendar-sync.mjs
           node --check volo-calendar-sync.mjs
           node volo-calendar-sync.mjs
