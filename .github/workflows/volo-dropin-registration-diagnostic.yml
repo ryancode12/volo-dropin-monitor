@@ -1,0 +1,36 @@
+name: Volo Drop-In Registration Diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-dropin-registrations:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependency
+        run: npm install --no-audit --no-fund
+
+      - name: Locate Chrome
+        run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Validate diagnostic
+        run: node --check volo-dropin-registration-diagnostic.mjs
+
+      - name: Inspect authenticated drop-in registration data
+        env:
+          VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
+          VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
+        run: node volo-dropin-registration-diagnostic.mjs
