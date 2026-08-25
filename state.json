@@ -3,12 +3,30 @@
   "current": [
     {
       "id": "f60d0e5ab315e1de5a76febd",
-      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 8/30 · 4:45PM - 5:30PM $FREE/player Coed All Skills 7v7 4 spots",
+      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 8/30 · 4:45PM - 5:30PM $FREE/player Coed All Skills 7v7 3 spots",
       "day": "Sunday",
       "time": "5:30pm",
       "location": "Cherry Creek / Glendale Infinity Park · 4:45pm -",
       "url": "https://www.volosports.com/game/9789b06c-fd49-4f7d-8a0b-396471bbfe87",
-      "spots": 4
+      "spots": 3
+    },
+    {
+      "id": "d2585153ae0b899e700a1cb3",
+      "title": "Drop In Today Tuesday - Soccer - DU Area University of Denver - Diane Wendt Field Today 8/25 · 9:10PM - 9:55PM $FREE/player Coed Skills (2) 7v7 1 spot",
+      "day": "Tuesday",
+      "time": "9:55pm",
+      "location": "Diane Wendt Field · 9:10pm -",
+      "url": "https://www.volosports.com/game/06d80bc7-b441-4fea-b0b7-dcc32b43e869",
+      "spots": 1
+    },
+    {
+      "id": "7cc2dc6d989599d8db9a24b3",
+      "title": "Drop In Tomorrow Wednesday - Soccer - City Park City Park Tomorrow 8/26 · 7:10PM - 7:55PM $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Wednesday",
+      "time": "7:55pm",
+      "location": "City Park City Park · 7:10pm -",
+      "url": "https://www.volosports.com/game/dbfc203f-a36f-4748-9e55-44d04b24c36f",
+      "spots": 2
     }
   ],
   "lastErrorDate": null,
