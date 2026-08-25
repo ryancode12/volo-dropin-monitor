@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 
 const commands = [
   ["node", ["patch-monitor.mjs"]],
+  ["node", ["patch-monitor-resilience.mjs"]],
   ["node", ["monitor.mjs"]],
 ];
 
