@@ -1,6 +1,25 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "91417937bab243accc5d209e",
+      "title": "Drop In Today Wednesday - Soccer - Northfield Dick's Sporting Goods Park Today 8/26 · 6PM - 6:50PM $FREE/player Coed Skills (2) 11v11 5 spots",
+      "day": "Wednesday",
+      "time": "6:50pm",
+      "location": "Northfield Dick'S Sporting Goods Park · 6pm -",
+      "url": "https://www.volosports.com/game/0f7af971-a976-4f29-a114-d491fb1aad05",
+      "spots": 5
+    },
+    {
+      "id": "3f37fea52128d749ef6e7c8d",
+      "title": "Drop In Today Wednesday - Soccer - Northfield Dick's Sporting Goods Park Today 8/26 · 7PM - 7:50PM $FREE/player Coed Skills (2) 11v11 4 spots",
+      "day": "Wednesday",
+      "time": "7:50pm",
+      "location": "Northfield Dick'S Sporting Goods Park · 7pm -",
+      "url": "https://www.volosports.com/game/e3f87e94-7cbd-41ad-ad4e-4f7939663cf7",
+      "spots": 4
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
