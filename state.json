@@ -1,25 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "25d09e77da517bc25ef44b77",
-      "title": "Drop In Today Friday - 11v11 Coed Soccer - Cherry Creek / Glendale Infinity Park Today 8/28 · 7:30PM - 8:20PM $FREE/player Coed All Skills 11v11 3 spots",
-      "day": "Friday",
-      "time": "8:20pm",
-      "location": "Cherry Creek / Glendale Infinity Park · 7:30pm -",
-      "url": "https://www.volosports.com/game/bd40adf8-a9bb-4670-9ad9-180aa5d5d169",
-      "spots": 3
-    },
-    {
-      "id": "595486d1208c3e9e63227e93",
-      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 8/30 · 5:30PM - 6:15PM $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Sunday",
-      "time": "6:15pm",
-      "location": "Cherry Creek / Glendale Infinity Park · 5:30pm -",
-      "url": "https://www.volosports.com/game/d4aa05e8-1042-4289-8e7d-4a31d2cab9a1",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-08"
 }
