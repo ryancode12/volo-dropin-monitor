@@ -24,7 +24,9 @@ concurrency:
 jobs:
   check-volo:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    # The monitor itself retries transient Volo/browser failures up to three times.
+    # Give those retries enough room to finish instead of killing a recovering run.
+    timeout-minutes: 20
 
     env:
       # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
@@ -97,15 +99,43 @@ jobs:
         if: always()
         shell: bash
         run: |
-          if ! git diff --quiet -- state.json; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state.json
-            git commit -m "chore: update Volo monitor state [skip ci]"
-            git push
-          else
+          set -euo pipefail
+
+          if git diff --quiet -- state.json; then
             echo "No state change to commit."
+            exit 0
           fi
+
+          # Keep the state produced by this run, but always build the commit on top
+          # of the newest master. Scheduled runs can otherwise push from a stale
+          # checkout and fail with a non-fast-forward error.
+          cp state.json /tmp/volo-state.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Persist state attempt ${attempt}/3"
+            git fetch origin master
+            git reset --hard origin/master
+            cp /tmp/volo-state.json state.json
+
+            git add state.json
+            if git diff --cached --quiet; then
+              echo "Latest master already contains this state."
+              exit 0
+            fi
+
+            git commit -m "chore: update Volo monitor state [skip ci]"
+            if git push origin HEAD:master; then
+              echo "Volo monitor state persisted successfully."
+              exit 0
+            fi
+
+            echo "State push raced with another master update; retrying on latest master."
+          done
+
+          echo "Unable to persist Volo monitor state after 3 attempts." >&2
+          exit 1
 
       - name: Mark workflow failed when monitor failed
         if: steps.monitor.outcome == 'failure'
