@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "cbf59779eb1698741ec3b343",
-      "title": "Drop In Tomorrow Tuesday - Soccer - City Park City Park Tomorrow 9/1 · 6PM - 6:45PM $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Tuesday",
-      "time": "6:45pm",
-      "location": "City Park City Park · 6pm -",
-      "url": "https://www.volosports.com/game/c7bb3f32-9708-436f-9f1b-84bfab5ef257",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
