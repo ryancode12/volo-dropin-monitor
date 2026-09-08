@@ -31,7 +31,7 @@ jobs:
     env:
       # Do not use minimumMen=1 here. Volo treats Men, Any Gender, and Open Gender
       # as separate inventory. The monitor rejects explicit women-only inventory
-      # while accepting positive male-eligible inventory in any of those categories.
+      # while accepting positive Coed/Open/Men availability.
       VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
@@ -68,6 +68,7 @@ jobs:
           node --check patch-monitor.mjs
           node --check patch-monitor-current-volo-format.mjs
           node --check patch-monitor-open-gender.mjs
+          node --check patch-monitor-explicit-women-only.mjs
           node --check patch-monitor-resilience.mjs
           node --check run-monitors.mjs
 
