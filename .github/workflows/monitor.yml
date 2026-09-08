@@ -71,6 +71,7 @@ jobs:
           node --check patch-monitor-authenticated-session.mjs
           node --check patch-monitor-authoritative-game-inventory.mjs
           node --check patch-monitor-resilience.mjs
+          node --check validate-composed-monitor.mjs
           node --check run-monitors.mjs
 
       - name: Increase browser protocol timeout
