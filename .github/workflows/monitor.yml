@@ -29,10 +29,11 @@ jobs:
     timeout-minutes: 20
 
     env:
-      # Do not use minimumMen=1 here. Volo treats Men, Any Gender, and Open Gender
-      # as separate inventory. The monitor rejects explicit women-only inventory
-      # while accepting positive Coed/Open/Men availability.
+      # Use an authenticated Volo session because app/user-specific drop-in
+      # inventory can differ from the anonymous public web page.
       VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
+      VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
+      VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
     steps:
@@ -67,6 +68,7 @@ jobs:
         run: |
           node --check patch-monitor.mjs
           node --check patch-monitor-current-volo-format.mjs
+          node --check patch-monitor-authenticated-session.mjs
           node --check patch-monitor-open-gender.mjs
           node --check patch-monitor-explicit-women-only.mjs
           node --check patch-monitor-resilience.mjs
@@ -97,11 +99,8 @@ jobs:
       - name: Test Volo dashboard and Google Calendar access
         if: github.event_name == 'workflow_dispatch' && inputs.calendar_sync_test
         env:
-          VOLO_EMAIL: ${{ secrets.VOLO_EMAIL }}
-          VOLO_PASSWORD: ${{ secrets.VOLO_PASSWORD }}
           GOOGLE_ACCESS_TOKEN: ${{ steps.google-auth.outputs.access_token }}
           GOOGLE_CALENDAR_ID: ${{ vars.GOOGLE_CALENDAR_ID }}
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: node volo-calendar-dashboard-card-diagnostic.mjs
 
       - name: Persist current listing state
