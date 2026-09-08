@@ -30,8 +30,8 @@ jobs:
 
     env:
       # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
-      # separate inventory, even though a man can register for either one.
-      # The monitor verifies gender eligibility on each game's details page.
+      # separate inventory. The monitor rejects explicit women-only inventory;
+      # current Coed/Open/Men cards remain eligible when Volo omits old count labels.
       VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
@@ -62,6 +62,13 @@ jobs:
 
       - name: Locate Chrome
         run: echo "CHROME_PATH=$(command -v google-chrome)" >> "$GITHUB_ENV"
+
+      - name: Validate soccer monitor patches
+        run: |
+          node --check patch-monitor.mjs
+          node --check patch-monitor-current-volo-format.mjs
+          node --check patch-monitor-resilience.mjs
+          node --check run-monitors.mjs
 
       - name: Increase browser protocol timeout
         shell: bash
