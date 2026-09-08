@@ -29,9 +29,9 @@ jobs:
     timeout-minutes: 20
 
     env:
-      # Do not use minimumMen=1 here. Volo treats "Men" and "Any gender" as
-      # separate inventory. The monitor rejects explicit women-only inventory;
-      # current Coed/Open/Men cards remain eligible when Volo omits old count labels.
+      # Do not use minimumMen=1 here. Volo treats Men, Any Gender, and Open Gender
+      # as separate inventory. The monitor rejects explicit women-only inventory
+      # while accepting positive male-eligible inventory in any of those categories.
       VOLO_URL: https://www.volosports.com/discover/denver?category=daily-sports&programType=dropin&sports=soccer
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
 
@@ -67,6 +67,7 @@ jobs:
         run: |
           node --check patch-monitor.mjs
           node --check patch-monitor-current-volo-format.mjs
+          node --check patch-monitor-open-gender.mjs
           node --check patch-monitor-resilience.mjs
           node --check run-monitors.mjs
 
@@ -113,9 +114,6 @@ jobs:
             exit 0
           fi
 
-          # Keep the state produced by this run, but always build the commit on top
-          # of the newest master. Scheduled runs can otherwise push from a stale
-          # checkout and fail with a non-fast-forward error.
           cp state.json /tmp/volo-state.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
