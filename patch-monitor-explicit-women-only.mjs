@@ -12,23 +12,40 @@ const oldBlock = [
 ].join("\n");
 
 const newBlock = [
-  "    // Volo can display category labels such as 'Women only 0' next to",
-  "    // 'Any gender 1'. The label text by itself must never reject a game.",
-  "    const womenOnlyCount = readCount([",
+  "    // Volo can flatten a two-column availability widget into text such as",
+  "    // 'Total Spot(s) Available 1 Women only Any gender 0 1'. Never use a",
+  "    // number BEFORE 'Women only' as that category's count, because that",
+  "    // number may be the overall total rather than women-only inventory.",
+  "    let womenOnlyCount = readCount([",
   "      /\\bwomen(?:'s)?\\s+only\\s*[:\\-]?\\s*(\\d+)\\b/i,",
-  "      /\\b(\\d+)\\s+women(?:'s)?\\s+only\\b/i,",
   "    ]);",
   "",
-  "    // Re-check all current male-eligible labels. This is intentionally",
-  "    // redundant with anyGenderCount so minor Volo UI wording changes do",
-  "    // not turn 'Women only 0 / Any gender 1' into a false negative.",
-  "    const eligibleCount = readCount([",
+  "    let eligibleCount = readCount([",
   "      /\\bany\\s+gender\\s*[:\\-]?\\s*(\\d+)\\b/i,",
-  "      /\\b(\\d+)\\s+any\\s+gender\\b/i,",
   "      /\\bopen\\s+gender\\s*[:\\-]?\\s*(\\d+)\\b/i,",
-  "      /\\b(\\d+)\\s+open\\s+gender\\b/i,",
   "      /\\bno\\s+preference\\s*[:\\-]?\\s*(\\d+)\\b/i,",
   "    ]);",
+  "",
+  "    // Current Volo/mobile-style markup can place both labels first and both",
+  "    // numeric values afterward: 'Women only Any gender 0 1'. In that layout",
+  "    // the first trailing value belongs to Women only and the second belongs",
+  "    // to Any/Open Gender.",
+  "    const pairedInventory = pageText.match(",
+  "      /\\bwomen(?:'s)?\\s+only\\b[\\s\\S]{0,80}?\\b(?:any|open)\\s+gender\\b[\\s:,-]{0,20}(\\d+)\\s+(\\d+)\\b/i",
+  "    );",
+  "    if (pairedInventory) {",
+  "      womenOnlyCount = Number(pairedInventory[1]);",
+  "      eligibleCount = Number(pairedInventory[2]);",
+  "    }",
+  "",
+  "    console.log(",
+  "      'Parsed Volo gender inventory: womenOnly=' +",
+  "        String(womenOnlyCount) +",
+  "        ' eligible=' +",
+  "        String(eligibleCount) +",
+  "        ' | ' +",
+  "        url",
+  "    );",
   "",
   "    if ((eligibleCount ?? 0) > 0) {",
   "      console.log(\"Verified eligible any/open-gender availability: \" + url);",
@@ -61,9 +78,9 @@ const newBlock = [
 
 if (source.includes(oldBlock)) {
   source = source.replace(oldBlock, newBlock);
-} else if (!source.includes("Women-only inventory is zero; keeping eligible listing:")) {
+} else if (!source.includes("Parsed Volo gender inventory:")) {
   throw new Error("Could not locate unsafe women-count rejection block in monitor.mjs");
 }
 
 await writeFile(path, source, "utf8");
-console.log("Replaced broad women-count rejection with count-aware explicit women-only logic.");
+console.log("Applied count-aware Volo paired gender-inventory parsing.");
