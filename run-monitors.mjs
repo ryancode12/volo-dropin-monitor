@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 const commands = [
   ["node", ["patch-monitor.mjs"]],
   ["node", ["patch-monitor-current-volo-format.mjs"]],
+  ["node", ["patch-monitor-authenticated-session.mjs"]],
   ["node", ["patch-monitor-open-gender.mjs"]],
   ["node", ["patch-monitor-explicit-women-only.mjs"]],
   ["node", ["patch-monitor-resilience.mjs"]],
