@@ -6,6 +6,7 @@ const commands = [
   ["node", ["patch-monitor-open-gender.mjs"]],
   ["node", ["patch-monitor-explicit-women-only.mjs"]],
   ["node", ["patch-monitor-resilience.mjs"]],
+  ["node", ["--check", "monitor.mjs"]],
   ["node", ["monitor.mjs"]],
 ];
 
@@ -30,7 +31,9 @@ for (const [command, args] of commands) {
   });
   if (exitCode !== 0) {
     failed = true;
-    console.error(`${label} failed with exit code ${exitCode}. Continuing with the other monitor.`);
+    console.error(`${label} failed with exit code ${exitCode}.`);
+    // Never execute the monitor when a runtime patch or the composed syntax check failed.
+    break;
   }
 }
 
