@@ -4,12 +4,23 @@ const path = "monitor.mjs";
 let source = await readFile(path, "utf8");
 
 const startMarker = "async function hasMensAvailability(";
-const endMarker = "\nasync function scrapeMatches() {";
 const start = source.indexOf(startMarker);
-const end = source.indexOf(endMarker, start);
 
-if (start < 0 || end < 0) {
-  throw new Error("Could not locate hasMensAvailability() in monitor.mjs");
+// Replace only hasMensAvailability(). The authenticated-session patch may have
+// already inserted login helpers between this function and scrapeMatches(), so
+// using scrapeMatches() as the only end marker can accidentally delete them.
+const endMarkers = [
+  "\nasync function firstExistingSelector(",
+  "\nasync function loginToVolo(",
+  "\nasync function scrapeMatches() {",
+];
+const endCandidates = endMarkers
+  .map((marker) => source.indexOf(marker, start))
+  .filter((index) => index >= 0);
+const end = endCandidates.length > 0 ? Math.min(...endCandidates) : -1;
+
+if (start < 0 || end < 0 || end <= start) {
+  throw new Error("Could not safely locate hasMensAvailability() boundaries in monitor.mjs");
 }
 
 const replacement = `async function hasMensAvailability(browser, rawUrl, listingText = "") {
