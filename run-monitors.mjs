@@ -3,9 +3,13 @@ import { spawn } from "node:child_process";
 const commands = [
   ["node", ["patch-monitor.mjs"]],
   ["node", ["patch-monitor-current-volo-format.mjs"]],
-  ["node", ["patch-monitor-authenticated-session.mjs"]],
+  // Replace the availability function before the authenticated-session patch
+  // inserts login helpers immediately ahead of scrapeMatches(). This keeps the
+  // patches independent and avoids deleting loginToVolo() by accident.
   ["node", ["patch-monitor-authoritative-game-inventory.mjs"]],
+  ["node", ["patch-monitor-authenticated-session.mjs"]],
   ["node", ["patch-monitor-resilience.mjs"]],
+  ["node", ["validate-composed-monitor.mjs"]],
   ["node", ["--check", "monitor.mjs"]],
   ["node", ["monitor.mjs"]],
 ];
@@ -32,7 +36,7 @@ for (const [command, args] of commands) {
   if (exitCode !== 0) {
     failed = true;
     console.error(`${label} failed with exit code ${exitCode}.`);
-    // Never execute the monitor when a runtime patch or the composed syntax check failed.
+    // Never execute the monitor when a runtime patch or composed validation failed.
     break;
   }
 }
