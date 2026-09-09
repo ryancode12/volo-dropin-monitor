@@ -2,12 +2,21 @@
   "initialized": true,
   "current": [
     {
-      "id": "0428a38a7391862c575061b8",
-      "title": "Drop In Today Tuesday - Soccer - City Park City Park Today 9/8 · 6PM - 6:45PM Member pricing $FREE/player Coed All Skills 7v7 1 spot",
-      "day": "Tuesday",
-      "time": "6:00pm",
-      "location": "City Park City Park",
-      "url": "https://www.volosports.com/game/90aa5559-385a-448b-9fe0-35ef7a0d51b8",
+      "id": "277369ce1de1d538f2b94a48",
+      "title": "Drop In Thursday Thursday - Soccer - DU Area University of Denver - Diane Wendt Field 9/10 · 7:40PM - 8:25PM Member pricing $FREE/player Coed Skills (2) 7v7 2 spots",
+      "day": "Thursday",
+      "time": "7:40pm",
+      "location": "Diane Wendt Field",
+      "url": "https://www.volosports.com/game/85867f7d-8ae7-4f9f-b58a-5eb1cc110da8",
+      "spots": 2
+    },
+    {
+      "id": "2671b24538d0db2673a06abb",
+      "title": "Drop In Thursday Thursday - Soccer - DU Area University of Denver - Diane Wendt Field 9/10 · 8:25PM - 9:10PM Member pricing $FREE/player Coed Skills (2) 7v7 1 spot",
+      "day": "Thursday",
+      "time": "8:25pm",
+      "location": "Diane Wendt Field",
+      "url": "https://www.volosports.com/game/0e86bf0e-e590-4d5f-b1ae-5f0b32223b0c",
       "spots": 1
     },
     {
