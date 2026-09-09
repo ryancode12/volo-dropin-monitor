@@ -1,61 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "277369ce1de1d538f2b94a48",
-      "title": "Drop In Thursday Thursday - Soccer - DU Area University of Denver - Diane Wendt Field 9/10 · 7:40PM - 8:25PM Member pricing $FREE/player Coed Skills (2) 7v7 2 spots",
-      "day": "Thursday",
-      "time": "7:40pm",
-      "location": "Diane Wendt Field",
-      "url": "https://www.volosports.com/game/85867f7d-8ae7-4f9f-b58a-5eb1cc110da8",
-      "spots": 2
-    },
-    {
-      "id": "2671b24538d0db2673a06abb",
-      "title": "Drop In Thursday Thursday - Soccer - DU Area University of Denver - Diane Wendt Field 9/10 · 8:25PM - 9:10PM Member pricing $FREE/player Coed Skills (2) 7v7 1 spot",
-      "day": "Thursday",
-      "time": "8:25pm",
-      "location": "Diane Wendt Field",
-      "url": "https://www.volosports.com/game/0e86bf0e-e590-4d5f-b1ae-5f0b32223b0c",
-      "spots": 1
-    },
-    {
-      "id": "0de22ff5c33b417a73c2a592",
-      "title": "Drop In Wednesday Wednesday - Soccer - Northfield Dick's Sporting Goods Park 9/16 · 6PM - 6:50PM Member pricing $FREE/player Coed Skills (2) 11v11 1 spot",
-      "day": "Wednesday",
-      "time": "6:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/4d935573-5174-460e-b1bd-6a926484c1f8",
-      "spots": 1
-    },
-    {
-      "id": "a6a401e046e6cb6ce0af698a",
-      "title": "Drop In Tomorrow Wednesday - Soccer - Northfield Dick's Sporting Goods Park Tomorrow 9/9 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 4 spots",
-      "day": "Wednesday",
-      "time": "7:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/a8dd41ad-6fcb-47ec-a177-039b06488100",
-      "spots": 4
-    },
-    {
-      "id": "3f37fea52128d749ef6e7c8d",
-      "title": "Drop In Wednesday Wednesday - Soccer - Northfield Dick's Sporting Goods Park 9/30 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 2 spots",
-      "day": "Wednesday",
-      "time": "7:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/e3f87e94-7cbd-41ad-ad4e-4f7939663cf7",
-      "spots": 2
-    },
-    {
-      "id": "79986e60c6cb74815e8befa4",
-      "title": "Drop In Wednesday Wednesday - Soccer - Northfield Dick's Sporting Goods Park 9/23 · 8PM - 8:50PM Member pricing $FREE/player Coed Skills (2) 11v11 1 spot",
-      "day": "Wednesday",
-      "time": "8:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/24ab17b6-e409-4614-b53f-d487817e39e8",
-      "spots": 1
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
