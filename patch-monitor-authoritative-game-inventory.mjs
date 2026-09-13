@@ -3,6 +3,12 @@ import { readFile, writeFile } from "node:fs/promises";
 const path = "monitor.mjs";
 let source = await readFile(path, "utf8");
 
+const parserImport =
+  'import { parseVoloGameInventory } from "./volo-inventory-parser.mjs";\n';
+if (!source.includes(parserImport.trim())) {
+  source = parserImport + source;
+}
+
 const startMarker = "async function hasMensAvailability(";
 const start = source.indexOf(startMarker);
 
@@ -72,21 +78,16 @@ const replacement = `async function hasMensAvailability(browser, rawUrl, listing
     }
 
     const pageText = detail.text;
-    const readCount = (pattern) => {
-      const match = pageText.match(pattern);
-      return match ? Number(match[1]) : null;
-    };
-
-    // These are the exact labels rendered by Volo's authenticated /game/<id>
-    // registration page. Only counts AFTER a label belong to that inventory bucket.
-    const totalCount = readCount(/\\btotal\\s+spot\\(s\\)\\s+available\\s*[:\\-]?\\s*(\\d+)\\b/i);
-    const menCount = readCount(/\\bmen(?:'s)?(?:\\s+only)?\\s*[:\\-]?\\s*(\\d+)\\b/i);
-    const anyGenderCount = readCount(/\\bany\\s+gender\\s*[:\\-]?\\s*(\\d+)\\b/i);
-    const openGenderCount = readCount(/\\bopen\\s+gender\\s*[:\\-]?\\s*(\\d+)\\b/i);
-    const womenOnlyCount = readCount(/\\bwomen(?:'s)?\\s+only\\s*[:\\-]?\\s*(\\d+)\\b/i);
-
-    const eligibleCount =
-      (menCount ?? 0) + (anyGenderCount ?? 0) + (openGenderCount ?? 0);
+    const inventory = parseVoloGameInventory(pageText);
+    const {
+      total: totalCount,
+      men: menCount,
+      anyGender: anyGenderCount,
+      openGender: openGenderCount,
+      womenOnly: womenOnlyCount,
+      eligible: eligibleCount,
+      source: inventorySource,
+    } = inventory;
 
     console.log(
       "Authoritative Volo game inventory: " +
@@ -98,17 +99,12 @@ const replacement = `async function hasMensAvailability(browser, rawUrl, listing
           openGender: openGenderCount,
           womenOnly: womenOnlyCount,
           eligible: eligibleCount,
+          source: inventorySource,
           listing: normalizeText(listingText).slice(0, 180),
         })
     );
 
-    if (
-      totalCount === null &&
-      menCount === null &&
-      anyGenderCount === null &&
-      openGenderCount === null &&
-      womenOnlyCount === null
-    ) {
+    if (inventorySource === "unknown") {
       console.log(
         "VOLO_NULL_INVENTORY_DIAG " +
           JSON.stringify({
@@ -128,7 +124,7 @@ const replacement = `async function hasMensAvailability(browser, rawUrl, listing
     }
 
     if ((womenOnlyCount ?? 0) > 0) {
-      console.log("Skipping Volo inventory restricted to women: " + url);
+      console.log("Skipping Volo inventory restricted to women/non-binary: " + url);
       return false;
     }
 
