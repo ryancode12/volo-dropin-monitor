@@ -1,6 +1,8 @@
 import { spawn } from "node:child_process";
 
 const commands = [
+  ["node", ["--check", "volo-inventory-parser.mjs"]],
+  ["node", ["--test", "volo-inventory-parser.test.mjs"]],
   ["node", ["patch-monitor.mjs"]],
   ["node", ["patch-monitor-current-volo-format.mjs"]],
   // Replace the availability function before the authenticated-session patch
@@ -36,7 +38,7 @@ for (const [command, args] of commands) {
   if (exitCode !== 0) {
     failed = true;
     console.error(`${label} failed with exit code ${exitCode}.`);
-    // Never execute the monitor when a runtime patch or composed validation failed.
+    // Never execute the monitor when a parser test, runtime patch, or composed validation failed.
     break;
   }
 }
