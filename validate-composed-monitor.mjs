@@ -3,9 +3,11 @@ import { readFile } from "node:fs/promises";
 const source = await readFile("monitor.mjs", "utf8");
 
 const requiredSnippets = [
+  'import { parseVoloGameInventory } from "./volo-inventory-parser.mjs";',
   "async function loginToVolo(page) {",
   "await loginToVolo(page);",
   "async function hasMensAvailability(",
+  "parseVoloGameInventory(pageText)",
   "Authoritative Volo game inventory:",
   "Verified male-eligible Volo inventory:",
 ];
@@ -29,4 +31,6 @@ if (loginCall < scrapeDefinition) {
   throw new Error("scrapeMatches() does not call loginToVolo().");
 }
 
-console.log("Composed monitor validation passed: login and authoritative inventory logic are present.");
+console.log(
+  "Composed monitor validation passed: login and tested authoritative inventory parser are present."
+);
