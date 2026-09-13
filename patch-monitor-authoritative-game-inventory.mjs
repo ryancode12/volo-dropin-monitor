@@ -59,7 +59,12 @@ const replacement = `async function hasMensAvailability(browser, rawUrl, listing
 
     const detail = await detailsPage.evaluate(() => ({
       url: location.href,
+      title: document.title,
       text: String(document.body?.innerText ?? "").replace(/\\s+/g, " ").trim(),
+      controls: [...document.querySelectorAll("button, a, [role='button']")]
+        .map((element) => String(element.innerText || element.textContent || "").replace(/\\s+/g, " ").trim())
+        .filter((text) => /log|sign|register|drop|spot|gender|women|men|choose|waitlist|sold/i.test(text))
+        .slice(0, 30),
     }));
 
     if (/\\/login(?:\\/|$|\\?)/i.test(detail.url)) {
@@ -96,6 +101,26 @@ const replacement = `async function hasMensAvailability(browser, rawUrl, listing
           listing: normalizeText(listingText).slice(0, 180),
         })
     );
+
+    if (
+      totalCount === null &&
+      menCount === null &&
+      anyGenderCount === null &&
+      openGenderCount === null &&
+      womenOnlyCount === null
+    ) {
+      console.log(
+        "VOLO_NULL_INVENTORY_DIAG " +
+          JSON.stringify({
+            requestedUrl: url,
+            finalUrl: detail.url,
+            title: detail.title,
+            textLength: detail.text.length,
+            textPreview: detail.text.slice(0, 1800),
+            controls: detail.controls,
+          })
+      );
+    }
 
     if (eligibleCount > 0) {
       console.log("Verified male-eligible Volo inventory: " + url);
