@@ -2,15 +2,6 @@
   "initialized": true,
   "current": [
     {
-      "id": "c78890cae840e613542ea54f",
-      "title": "Drop In Today Monday - Soccer - City Park City Park Today 9/14 · 6:35PM - 7:20PM Member pricing $FREE/player Coed All Skills 7v7 3 spots",
-      "day": "Monday",
-      "time": "6:35pm",
-      "location": "City Park City Park",
-      "url": "https://www.volosports.com/game/31ae5d1f-932e-4be3-89a5-0f28864777c4",
-      "spots": 3
-    },
-    {
       "id": "8cfdc7e7a475fdb37faa1d8f",
       "title": "Drop In Today Monday - Indoor Soccer (6v6 Coed) - Ruby Hill Skyline Indoor Turf Today 9/14 · 6:45PM - 7:30PM Member pricing $10 $FREE/player Coed All Skills 6v6 3 spots",
       "day": "Monday",
@@ -18,6 +9,15 @@
       "location": "Ruby Hill Skyline Indoor Turf",
       "url": "https://www.volosports.com/game/653922cc-5a4f-4720-94b3-71b5e5039119",
       "spots": 3
+    },
+    {
+      "id": "9adfcd04c69d1d0d64d7eedd",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 8:15PM - 9PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Monday",
+      "time": "8:15pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/6fb4de7e-99b8-4636-938e-9dd2e461cd3d",
+      "spots": 2
     },
     {
       "id": "07dd3f5839d6ba1089d58091",
