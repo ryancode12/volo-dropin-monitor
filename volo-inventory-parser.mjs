@@ -10,7 +10,6 @@ function readCount(text, pattern) {
 export function parseVoloGameInventory(rawText) {
   const text = normalizeText(rawText);
 
-  // Older Volo game pages and the mobile app expose explicit inventory buckets.
   const total = readCount(
     text,
     /\btotal\s+spot\(s\)\s+available\s*[:\-]?\s*(\d+)\b/i
@@ -44,22 +43,23 @@ export function parseVoloGameInventory(rawText) {
     };
   }
 
-  // Current Volo web game pages render each team's vacancies like:
-  //   "Nutmeg Tea 2 spots · 1 women & non-binary"
-  // The first count is that team's total vacancies. The second is the number
-  // reserved for women/non-binary players. The remainder is unrestricted.
+  const sectionMatch = text.match(
+    /\bWho needs a player\b([\s\S]*?)(?:\bWhat[’']?s a drop-in\b|$)/i
+  );
+  const teamSection = sectionMatch?.[1] ?? "";
+
   const teamSlotPattern =
-    /\b(\d+)\s+spots?\s*(?:[·•]|[-–—]|\|)?\s*(\d+)\s+(?:women|woman|female(?:s)?)\s*(?:&|and)\s*non[-\s]?binary\b/gi;
+    /\b(\d+)\s+spots?\b(?:\s*(?:[·•]|[-–—]|\|)?\s*(\d+)\s+(?:women|woman|female(?:s)?)\s*(?:&|and)\s*non[-\s]?binary\b)?/gi;
 
   let match;
   let teamTotal = 0;
   let restricted = 0;
   let foundTeamSlots = false;
 
-  while ((match = teamSlotPattern.exec(text)) !== null) {
+  while ((match = teamSlotPattern.exec(teamSection)) !== null) {
     foundTeamSlots = true;
     teamTotal += Number(match[1]);
-    restricted += Number(match[2]);
+    restricted += match[2] == null ? 0 : Number(match[2]);
   }
 
   if (foundTeamSlots) {
