@@ -12,12 +12,12 @@
     },
     {
       "id": "1259fd7399217bf8c3a164ed",
-      "title": "Drop In Today Monday - Soccer - Sloan's Lake Sloan's Lake Park Today 9/14 · 6:25PM - 7:10PM Member pricing $10 $FREE/player Coed All Skills 7v7 2 spots",
+      "title": "Drop In Today Monday - Soccer - Sloan's Lake Sloan's Lake Park Today 9/14 · 6:25PM - 7:10PM Member pricing $10 $FREE/player Coed All Skills 7v7 1 spot",
       "day": "Monday",
       "time": "6:25pm",
       "location": "Sloan's Lake Sloan's Lake Park",
       "url": "https://www.volosports.com/game/752bf0c7-fc2a-4a48-ac56-cc78117b6fd9",
-      "spots": 2
+      "spots": 1
     },
     {
       "id": "8abdd97fe6107d3a7c412a02",
@@ -38,24 +38,6 @@
       "spots": 3
     },
     {
-      "id": "493f7b868f10cf4c56304276",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 2 spots",
-      "day": "Monday",
-      "time": "7:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/ce6f8c64-719c-445f-84ac-d19f657a438b",
-      "spots": 2
-    },
-    {
-      "id": "305ed2f9eed06b168068636a",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 7:30PM - 8:15PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Monday",
-      "time": "7:30pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/7c7b3463-ed34-4781-8958-cf81e7d562e9",
-      "spots": 2
-    },
-    {
       "id": "c5e40e95de374c3c503c3d1e",
       "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 8PM - 8:50PM Member pricing $FREE/player Coed Skills (2) 11v11 1 spot",
       "day": "Monday",
@@ -65,13 +47,13 @@
       "spots": 1
     },
     {
-      "id": "9adfcd04c69d1d0d64d7eedd",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 8:15PM - 9PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Monday",
-      "time": "8:15pm",
+      "id": "32b4c3693d812e1c2f2bfcaf",
+      "title": "Drop In Wednesday Wednesday - Soccer - Northfield Dick's Sporting Goods Park 9/16 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 6 spots",
+      "day": "Wednesday",
+      "time": "7:00pm",
       "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/6fb4de7e-99b8-4636-938e-9dd2e461cd3d",
-      "spots": 2
+      "url": "https://www.volosports.com/game/d84ae109-40f9-4294-aad2-bae572a85923",
+      "spots": 6
     }
   ],
   "lastErrorDate": null,
