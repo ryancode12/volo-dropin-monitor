@@ -1,6 +1,61 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "944587944e07d82cbf584dc0",
+      "title": "Drop In Today Monday - Soccer - Berkeley 46th Ave & Pecos Park Today 9/14 · 6PM - 6:45PM Member pricing $10 $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Monday",
+      "time": "6:00pm",
+      "location": "Berkeley 46th Ave & Pecos Park",
+      "url": "https://www.volosports.com/game/cc9799c3-e8db-43ab-bb98-7908f97d2eb1",
+      "spots": 2
+    },
+    {
+      "id": "8abdd97fe6107d3a7c412a02",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 6:45PM - 7:30PM Member pricing $FREE/player Coed All Skills 7v7 3 spots",
+      "day": "Monday",
+      "time": "6:45pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/9f6bc43a-87ac-4fdf-a7df-5837d32fbf7a",
+      "spots": 3
+    },
+    {
+      "id": "8cfdc7e7a475fdb37faa1d8f",
+      "title": "Drop In Today Monday - Indoor Soccer (6v6 Coed) - Ruby Hill Skyline Indoor Turf Today 9/14 · 6:45PM - 7:30PM Member pricing $10 $FREE/player Coed All Skills 6v6 3 spots",
+      "day": "Monday",
+      "time": "6:45pm",
+      "location": "Ruby Hill Skyline Indoor Turf",
+      "url": "https://www.volosports.com/game/653922cc-5a4f-4720-94b3-71b5e5039119",
+      "spots": 3
+    },
+    {
+      "id": "493f7b868f10cf4c56304276",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 2 spots",
+      "day": "Monday",
+      "time": "7:00pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/ce6f8c64-719c-445f-84ac-d19f657a438b",
+      "spots": 2
+    },
+    {
+      "id": "305ed2f9eed06b168068636a",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 7:30PM - 8:15PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Monday",
+      "time": "7:30pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/7c7b3463-ed34-4781-8958-cf81e7d562e9",
+      "spots": 2
+    },
+    {
+      "id": "9adfcd04c69d1d0d64d7eedd",
+      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/14 · 8:15PM - 9PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Monday",
+      "time": "8:15pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/6fb4de7e-99b8-4636-938e-9dd2e461cd3d",
+      "spots": 2
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
