@@ -3,12 +3,12 @@
   "current": [
     {
       "id": "b94530771108989314d39639",
-      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 9/16 · 5:45PM - 6:30PM Member pricing $FREE/player Coed All Skills 7v7 1 spot",
+      "title": "Drop In Today Wednesday - Soccer - City Park City Park Today 9/16 · 5:45PM - 6:30PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
       "day": "Wednesday",
       "time": "5:45pm",
       "location": "City Park City Park",
       "url": "https://www.volosports.com/game/360d56f2-146d-4092-b484-a6bc6aeefb02",
-      "spots": 1
+      "spots": 2
     },
     {
       "id": "e7937fb8256dd968408d22ea",
@@ -26,6 +26,15 @@
       "time": "6:00pm",
       "location": "Northfield Dick's Sporting Goods Park",
       "url": "https://www.volosports.com/game/ea7cb827-1134-4e40-89c5-9cece639bd2d",
+      "spots": 4
+    },
+    {
+      "id": "e5b747c034a6930facf587a3",
+      "title": "Drop In Today Wednesday - Soccer - Northfield Dick's Sporting Goods Park Today 9/16 · 8PM - 8:50PM Member pricing $FREE/player Coed Skills (2) 11v11 4 spots",
+      "day": "Wednesday",
+      "time": "8:00pm",
+      "location": "Northfield Dick's Sporting Goods Park",
+      "url": "https://www.volosports.com/game/ac5a0cb5-f12a-40ef-83cc-0dc90bed68d6",
       "spots": 4
     },
     {
