@@ -2,60 +2,6 @@
   "initialized": true,
   "current": [
     {
-      "id": "ecbe868741916a51fadd715b",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/21 · 6PM - 6:45PM Member pricing $FREE/player Coed All Skills 7v7 3 spots",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/f942ee5e-710d-420b-80dd-cd41c7f5e86c",
-      "spots": 3
-    },
-    {
-      "id": "c161aa4c674a1cb6236491a0",
-      "title": "Drop In Today Monday - Soccer - Northfield Dick's Sporting Goods Park Today 9/21 · 6PM - 6:50PM Member pricing $FREE/player Coed Skills (2) 11v11 5 spots",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/8331795b-822f-497c-ae29-c881a6e8ca35",
-      "spots": 5
-    },
-    {
-      "id": "35ea4ff6290fff2f21079eb3",
-      "title": "Drop In Today Monday - Indoor Soccer (6v6 Coed) - Ruby Hill Skyline Indoor Turf Today 9/21 · 6PM - 6:45PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Ruby Hill Skyline Indoor Turf",
-      "url": "https://www.volosports.com/game/facd7ac7-bbad-41d8-b03f-23de2ee569c8",
-      "spots": 1
-    },
-    {
-      "id": "93320fffb3ed8381ecc657d1",
-      "title": "Drop In Today Monday - Soccer - Sloan's Lake Sloan's Lake Park Today 9/21 · 6PM - 6:45PM Member pricing $10 $FREE/player Coed All Skills 7v7 1 spot",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Sloan's Lake Sloan's Lake Park",
-      "url": "https://www.volosports.com/game/52b20e11-3203-4a02-9008-522790055eae",
-      "spots": 1
-    },
-    {
-      "id": "7eeebdd4d3cf86e52fa5aab8",
-      "title": "Drop In Today Monday - Soccer - Wash Park Bates-Logan Park Today 9/21 · 6PM - 6:45PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Wash Park Bates-Logan Park",
-      "url": "https://www.volosports.com/game/789504d1-2a58-4ebf-b399-d5d7741ca0dd",
-      "spots": 2
-    },
-    {
-      "id": "4054666105593a28f55b5fdf",
-      "title": "Drop In Today Monday - Soccer - Wash Park Veterans Park Today 9/21 · 6PM - 6:45PM Member pricing $FREE/player Coed All Skills 7v7 2 spots",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Wash Park Veterans Park",
-      "url": "https://www.volosports.com/game/696bc692-9a98-46ce-9287-0a95d21429a4",
-      "spots": 2
-    },
-    {
       "id": "bc3a806af2109eff64555b85",
       "title": "Drop In Today Monday - Indoor Soccer (6v6 Coed) - Ruby Hill Skyline Indoor Turf Today 9/21 · 6:45PM - 7:30PM Member pricing $10 $FREE/player Coed All Skills 6v6 2 spots",
       "day": "Monday",
