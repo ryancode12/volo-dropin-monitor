@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "fcc74f9beb911e63922331ea",
+      "title": "Drop In Wednesday Wednesday - Soccer - Highlands Ciancio Park 9/30 · 6PM - 6:45PM Member pricing $10 $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Wednesday",
+      "time": "6:00pm",
+      "location": "Highlands Ciancio Park",
+      "url": "https://www.volosports.com/game/1cba6b74-1880-45e5-a294-75a6cb24cecf",
+      "spots": 2
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
