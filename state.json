@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "66d4bc32f8a01330deec4849",
-      "title": "Drop In Today Wednesday - Soccer - Northfield Dick's Sporting Goods Park Today 9/30 · 7PM - 7:50PM Member pricing $FREE/player Coed Skills (2) 11v11 1 spot",
-      "day": "Wednesday",
-      "time": "7:00pm",
-      "location": "Northfield Dick's Sporting Goods Park",
-      "url": "https://www.volosports.com/game/8f735bf3-52b8-4739-860f-9c9b46e7decc",
-      "spots": 1
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
