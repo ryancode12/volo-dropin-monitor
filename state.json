@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "b1f421c9346103af2a30ea98",
+      "title": "Drop In Today Wednesday - 5v5 Outdoor Turf Soccer - Northfield Concourse K - Sports Academy Today 9/30 · 8:15PM - 9PM Member pricing $10 $FREE/player Coed All Skills 5v5 1 spot",
+      "day": "Wednesday",
+      "time": "8:15pm",
+      "location": "Sports Academy",
+      "url": "https://www.volosports.com/game/bf9a7928-1011-42a3-af31-f555fbc3b817",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-09"
 }
