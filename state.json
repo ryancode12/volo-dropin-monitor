@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "4f6a53edfd05856f1b1612dc",
-      "title": "Drop In Today Monday - Indoor Soccer (6v6 Coed) - Ruby Hill Skyline Indoor Turf Today 10/5 · 6PM - 6:45PM Member pricing $10 $FREE/player Coed All Skills 6v6 3 spots",
-      "day": "Monday",
-      "time": "6:00pm",
-      "location": "Ruby Hill Skyline Indoor Turf",
-      "url": "https://www.volosports.com/game/99223ce6-5ce0-4e41-b872-7131c9731b16",
-      "spots": 3
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-10"
 }
