@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "9042fdcf4e1dd9ac2fd7fb31",
+      "title": "Drop In Today Monday - Soccer - Sloan's Lake Sloan's Lake Park Today 10/5 · 5:50PM - 6:35PM Member pricing $10 $FREE/player Coed All Skills 7v7 1 spot",
+      "day": "Monday",
+      "time": "5:50pm",
+      "location": "Sloan's Lake Sloan's Lake Park",
+      "url": "https://www.volosports.com/game/68b889d0-f96e-4d46-ac05-715d53dfc011",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-10"
 }
