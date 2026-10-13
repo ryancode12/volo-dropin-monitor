@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 const commands = [
   ["node", ["--check", "volo-inventory-parser.mjs"]],
   ["node", ["--test", "volo-inventory-parser.test.mjs"]],
+  ["node", ["--check", "basketball-monitor.mjs"]],
   ["node", ["patch-monitor.mjs"]],
   ["node", ["patch-monitor-current-volo-format.mjs"]],
   // Replace the availability function before the authenticated-session patch
@@ -14,6 +15,7 @@ const commands = [
   ["node", ["validate-composed-monitor.mjs"]],
   ["node", ["--check", "monitor.mjs"]],
   ["node", ["monitor.mjs"]],
+  ["node", ["basketball-monitor.mjs"]],
 ];
 
 let failed = false;
