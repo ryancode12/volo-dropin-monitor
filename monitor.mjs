@@ -120,6 +120,7 @@ async function readState() {
     const raw = await readFile(STATE_PATH, "utf8");
     const state = JSON.parse(raw);
     return {
+      ...state,
       initialized: Boolean(state.initialized),
       current: Array.isArray(state.current) ? state.current : [],
       lastErrorDate: state.lastErrorDate ?? null,
