@@ -3,7 +3,7 @@
   "current": [
     {
       "id": "5928d6b5dc2b4368981d4ef8",
-      "title": "Drop In Today Friday - Soccer - Cherry Creek / Glendale Infinity Park Today 10/16 · 7:30PM - 8:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 4 spots",
+      "title": "Drop In Today Friday - Soccer - Cherry Creek / Glendale Infinity Park Today 10/16 · 7:30PM - 8:20PM $10/player Coed All Skills 11v11 4 spots",
       "day": "Friday",
       "time": "7:30pm",
       "location": "Cherry Creek / Glendale Infinity Park",
@@ -12,7 +12,7 @@
     },
     {
       "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 2 spots",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 2 spots",
       "day": "Monday",
       "time": "8:30pm",
       "location": "Golden Golden Goal Sports Complex",
@@ -51,6 +51,15 @@
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/848067c2-9d38-425f-b0fb-3300d581b43f",
         "spots": 4
+      },
+      {
+        "id": "572046aeea5545e29cbfc7fa",
+        "title": "Drop In Tuesday Tuesday -(5v5 Coed) Basketball - RiNo Volo Sports Arena 10/20 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 5 spots",
+        "day": "Tuesday",
+        "time": "8:00pm",
+        "location": "RiNo Volo Sports Arena",
+        "url": "https://www.volosports.com/game/51ec4a81-cca0-4c22-9cc7-f6385a990386",
+        "spots": 5
       }
     ],
     "lastErrorDate": null
