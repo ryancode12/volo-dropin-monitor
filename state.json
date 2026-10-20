@@ -18,12 +18,12 @@
     "current": [
       {
         "id": "7f2a8f31a748ad59a743f2dc",
-        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 10/25 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 4 spots",
+        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 10/25 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
         "day": "Sunday",
         "time": "1:00pm",
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/317224b9-4196-429d-b19d-b0c0a04405c5",
-        "spots": 4
+        "spots": 3
       },
       {
         "id": "d848490e264d9b580d4a494b",
@@ -63,12 +63,12 @@
       },
       {
         "id": "572046aeea5545e29cbfc7fa",
-        "title": "Drop In Today Tuesday -(5v5 Coed) Basketball - RiNo Volo Sports Arena Today 10/20 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 2 spots",
+        "title": "Drop In Today Tuesday -(5v5 Coed) Basketball - RiNo Volo Sports Arena Today 10/20 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
         "day": "Tuesday",
         "time": "8:00pm",
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/51ec4a81-cca0-4c22-9cc7-f6385a990386",
-        "spots": 2
+        "spots": 3
       }
     ],
     "lastErrorDate": null
