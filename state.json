@@ -2,22 +2,13 @@
   "initialized": true,
   "current": [
     {
-      "id": "fd65b4f3b5209109a8edeeed",
-      "title": "Drop In Tomorrow Friday - Soccer - Cherry Creek / Glendale Infinity Park Tomorrow 10/23 · 7:30PM - 8:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 3 spots",
-      "day": "Friday",
-      "time": "7:30pm",
-      "location": "Cherry Creek / Glendale Infinity Park",
-      "url": "https://www.volosports.com/game/ee53a99f-c7fe-4a39-bde9-0c4cc55e72c7",
-      "spots": 3
-    },
-    {
       "id": "32946590b715f69093dadd00",
-      "title": "Drop In Tomorrow Friday - Soccer - Cherry Creek / Glendale Infinity Park Tomorrow 10/23 · 9:30PM - 10:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 6 spots",
+      "title": "Drop In Tomorrow Friday - Soccer - Cherry Creek / Glendale Infinity Park Tomorrow 10/23 · 9:30PM - 10:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 5 spots",
       "day": "Friday",
       "time": "9:30pm",
       "location": "Cherry Creek / Glendale Infinity Park",
       "url": "https://www.volosports.com/game/a16fa255-e2f5-4999-ba74-0da1bad9aeff",
-      "spots": 6
+      "spots": 5
     },
     {
       "id": "f8e0bdd9567372dc587e2490",
@@ -27,6 +18,15 @@
       "location": "Golden Golden Goal Sports Complex",
       "url": "https://www.volosports.com/game/78fb89e0-319a-4751-a565-f992fa4b5b51",
       "spots": 2
+    },
+    {
+      "id": "35fe11765b65f3b848b7de7d",
+      "title": "Drop In Today Thursday - (7v7 Coed) Soccer - DU Area University of Denver - Diane Wendt Field Today 10/22 · 8:15PM - 9PM Member pricing $10 $FREE/player Coed Skills (2) 7v7 1 spot",
+      "day": "Thursday",
+      "time": "8:15pm",
+      "location": "Diane Wendt Field",
+      "url": "https://www.volosports.com/game/c67e8a3a-269b-4884-80da-591657727b43",
+      "spots": 1
     }
   ],
   "lastErrorDate": null,
