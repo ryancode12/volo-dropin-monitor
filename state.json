@@ -2,8 +2,17 @@
   "initialized": true,
   "current": [
     {
+      "id": "32946590b715f69093dadd00",
+      "title": "Drop In Friday Friday - Soccer - Cherry Creek / Glendale Infinity Park 10/23 · 9:30PM - 10:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 6 spots",
+      "day": "Friday",
+      "time": "9:30pm",
+      "location": "Cherry Creek / Glendale Infinity Park",
+      "url": "https://www.volosports.com/game/a16fa255-e2f5-4999-ba74-0da1bad9aeff",
+      "spots": 6
+    },
+    {
       "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 2 spots",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 2 spots",
       "day": "Monday",
       "time": "8:30pm",
       "location": "Golden Golden Goal Sports Complex",
@@ -12,7 +21,7 @@
     },
     {
       "id": "90b4e225e71d228c9747c042",
-      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 10/25 · 4PM - 4:45PM $10/player Coed All Skills 7v7 2 spots",
+      "title": "Drop In Sunday Sunday - Soccer - Cherry Creek / Glendale Infinity Park 10/25 · 4PM - 4:45PM Member pricing $10 $FREE/player Coed All Skills 7v7 2 spots",
       "day": "Sunday",
       "time": "4:00pm",
       "location": "Cherry Creek / Glendale Infinity Park",
