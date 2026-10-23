@@ -1,34 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "c9fd5846ae7259203793d3e3",
-      "title": "Drop In Today Friday - Soccer - Cherry Creek / Glendale Infinity Park Today 10/23 · 8:30PM - 9:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 5 spots",
-      "day": "Friday",
-      "time": "8:30pm",
-      "location": "Cherry Creek / Glendale Infinity Park",
-      "url": "https://www.volosports.com/game/f0edf25b-4e49-4d2b-abb4-7e28f53abbfe",
-      "spots": 5
-    },
-    {
-      "id": "32946590b715f69093dadd00",
-      "title": "Drop In Today Friday - Soccer - Cherry Creek / Glendale Infinity Park Today 10/23 · 9:30PM - 10:20PM Member pricing $10 $FREE/player Coed All Skills 11v11 5 spots",
-      "day": "Friday",
-      "time": "9:30pm",
-      "location": "Cherry Creek / Glendale Infinity Park",
-      "url": "https://www.volosports.com/game/a16fa255-e2f5-4999-ba74-0da1bad9aeff",
-      "spots": 5
-    },
-    {
-      "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 2 spots",
-      "day": "Monday",
-      "time": "8:30pm",
-      "location": "Golden Golden Goal Sports Complex",
-      "url": "https://www.volosports.com/game/78fb89e0-319a-4751-a565-f992fa4b5b51",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-10",
   "basketball": {
