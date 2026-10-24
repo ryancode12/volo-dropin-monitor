@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "f8e0bdd9567372dc587e2490",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 1 spot",
+      "day": "Monday",
+      "time": "8:30pm",
+      "location": "Golden Golden Goal Sports Complex",
+      "url": "https://www.volosports.com/game/78fb89e0-319a-4751-a565-f992fa4b5b51",
+      "spots": 1
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-10",
   "basketball": {
