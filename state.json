@@ -3,7 +3,7 @@
   "current": [
     {
       "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 1 spot",
       "day": "Monday",
       "time": "8:30pm",
       "location": "Golden Golden Goal Sports Complex",
@@ -12,7 +12,7 @@
     },
     {
       "id": "f7447bb982967a7219e2e125",
-      "title": "Drop In Thursday Thursday - (7v7 Coed) Soccer - DU Area University of Denver - Diane Wendt Field 10/29 · 9PM - 9:45PM Member pricing $10 $FREE/player Coed Skills (2) 7v7 4 spots",
+      "title": "Drop In Thursday Thursday - (7v7 Coed) Soccer - DU Area University of Denver - Diane Wendt Field 10/29 · 9PM - 9:45PM $10/player Coed Skills (2) 7v7 4 spots",
       "day": "Thursday",
       "time": "9:00pm",
       "location": "Diane Wendt Field",
@@ -25,15 +25,6 @@
   "basketball": {
     "initialized": true,
     "current": [
-      {
-        "id": "5c08a79a3b2721f0545d9e32",
-        "title": "Drop In Today Monday - Basketball - RiNo Volo Sports Arena Today 10/26 · 6PM - 6:50PM Member pricing $10 $FREE/player Men Social/Beginner 5v5 1 spot",
-        "day": "Monday",
-        "time": "6:00pm",
-        "location": "RiNo Volo Sports Arena",
-        "url": "https://www.volosports.com/game/986eb92a-5b5e-4573-881d-bc9c3b331c5a",
-        "spots": 1
-      },
       {
         "id": "d848490e264d9b580d4a494b",
         "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/1 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
