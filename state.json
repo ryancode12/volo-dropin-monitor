@@ -3,7 +3,7 @@
   "current": [
     {
       "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 1 spot",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
       "day": "Monday",
       "time": "8:30pm",
       "location": "Golden Golden Goal Sports Complex",
@@ -42,6 +42,15 @@
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/695119f1-bcda-4db7-a880-186e95e550ca",
         "spots": 6
+      },
+      {
+        "id": "4e6bcf6d06f65ae5b87bf5ee",
+        "title": "Drop In Thursday AI Stat Tracking Thursday - AI Stat Tracking Basketball - RiNo Volo Sports Arena 10/29 · 7PM - 7:50PM Member pricing $10 $FREE/player Coed Skills (2) 5v5 4 spots",
+        "day": "Thursday",
+        "time": "7:00pm",
+        "location": "RiNo Volo Sports Arena",
+        "url": "https://www.volosports.com/game/66284203-c111-4b8e-a5ee-58744e524f90",
+        "spots": 4
       },
       {
         "id": "2490438260e55cc5e4f322af",
