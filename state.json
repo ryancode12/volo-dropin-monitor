@@ -2,6 +2,15 @@
   "initialized": true,
   "current": [
     {
+      "id": "a5160a6ce369dcfb8375df24",
+      "title": "Drop In Today Monday - Indoor Soccer - Golden Golden Goal Sports Complex Today 10/26 · 7:45PM - 8:30PM Member pricing $10 $FREE/player Coed All Skills 6v6 4 spots",
+      "day": "Monday",
+      "time": "7:45pm",
+      "location": "Golden Golden Goal Sports Complex",
+      "url": "https://www.volosports.com/game/f5c0034b-4fe0-4eac-b3b1-ec77f9f32d65",
+      "spots": 4
+    },
+    {
       "id": "f8e0bdd9567372dc587e2490",
       "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
       "day": "Monday",
@@ -27,7 +36,7 @@
     "current": [
       {
         "id": "d848490e264d9b580d4a494b",
-        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/1 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
+        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/1 · 1PM - 1:50PM $10/player Coed Social/Beginner 5v5 3 spots",
         "day": "Sunday",
         "time": "1:00pm",
         "location": "RiNo Volo Sports Arena",
@@ -36,7 +45,7 @@
       },
       {
         "id": "f33f8072b7ce57e77b556ab0",
-        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/1 · 2PM - 2:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 4 spots",
+        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/1 · 2PM - 2:50PM $10/player Coed Social/Beginner 5v5 4 spots",
         "day": "Sunday",
         "time": "2:00pm",
         "location": "RiNo Volo Sports Arena",
@@ -45,7 +54,7 @@
       },
       {
         "id": "67b6f66c11c6b578476bd815",
-        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/8 · 2PM - 2:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 6 spots",
+        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/8 · 2PM - 2:50PM $10/player Coed Social/Beginner 5v5 6 spots",
         "day": "Sunday",
         "time": "2:00pm",
         "location": "RiNo Volo Sports Arena",
@@ -54,7 +63,7 @@
       },
       {
         "id": "723c7414c01057a9e99a1f84",
-        "title": "Drop In Tuesday Tuesday -(5v5 Coed) Basketball - RiNo Volo Sports Arena 11/3 · 10PM - 10:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 4 spots",
+        "title": "Drop In Tuesday Tuesday -(5v5 Coed) Basketball - RiNo Volo Sports Arena 11/3 · 10PM - 10:50PM $10/player Coed Social/Beginner 5v5 4 spots",
         "day": "Tuesday",
         "time": "10:00pm",
         "location": "RiNo Volo Sports Arena",
