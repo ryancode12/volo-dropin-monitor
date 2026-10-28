@@ -3,11 +3,20 @@
   "current": [
     {
       "id": "f8e0bdd9567372dc587e2490",
-      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM $10/player Coed All Skills 6v6 1 spot",
+      "title": "Drop In Monday Monday - Indoor Soccer - Golden Golden Goal Sports Complex 11/16 · 8:30PM - 9:15PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
       "day": "Monday",
       "time": "8:30pm",
       "location": "Golden Golden Goal Sports Complex",
       "url": "https://www.volosports.com/game/78fb89e0-319a-4751-a565-f992fa4b5b51",
+      "spots": 1
+    },
+    {
+      "id": "cee45ac0b49d6c4cb5db5d62",
+      "title": "Drop In Today Wednesday - Indoor Soccer - Golden Golden Goal Sports Complex Today 10/28 · 9:15PM - 10PM Member pricing $10 $FREE/player Coed All Skills 6v6 1 spot",
+      "day": "Wednesday",
+      "time": "9:15pm",
+      "location": "Golden Golden Goal Sports Complex",
+      "url": "https://www.volosports.com/game/bb9182cb-2522-4898-9e48-1e38efe6335c",
       "spots": 1
     }
   ],
