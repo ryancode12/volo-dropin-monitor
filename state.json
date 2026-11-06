@@ -15,17 +15,7 @@
   "keepaliveMonth": "2026-11",
   "basketball": {
     "initialized": true,
-    "current": [
-      {
-        "id": "0697d422bd78b47d91cb5bec",
-        "title": "Drop In Sunday Sunday - Basketball - RiNo Volo Sports Arena 11/8 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 1 spot",
-        "day": "Sunday",
-        "time": "1:00pm",
-        "location": "RiNo Volo Sports Arena",
-        "url": "https://www.volosports.com/game/76083667-728c-4b64-b4b7-c64932a1d89a",
-        "spots": 1
-      }
-    ],
+    "current": [],
     "lastErrorDate": null
   }
 }
