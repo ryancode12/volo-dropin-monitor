@@ -1,16 +1,6 @@
 {
   "initialized": true,
-  "current": [
-    {
-      "id": "812bc56b16efd390ceedd8dc",
-      "title": "Drop In Tuesday Tuesday -Indoor 5v5 Coed Soccer - Ruby Hill Soccer Post 11/10 · 7PM - 7:45PM Member pricing $10 $FREE/player Coed All Skills 5v5 2 spots",
-      "day": "Tuesday",
-      "time": "7:00pm",
-      "location": "Ruby Hill Soccer Post",
-      "url": "https://www.volosports.com/game/95819a1a-b200-475a-a6ad-d369102f6f94",
-      "spots": 2
-    }
-  ],
+  "current": [],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-11",
   "basketball": {
