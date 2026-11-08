@@ -15,26 +15,7 @@
   "keepaliveMonth": "2026-11",
   "basketball": {
     "initialized": true,
-    "current": [
-      {
-        "id": "0697d422bd78b47d91cb5bec",
-        "title": "Drop In Today Sunday - Basketball - RiNo Volo Sports Arena Today 11/8 · 1PM - 1:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 1 spot",
-        "day": "Sunday",
-        "time": "1:00pm",
-        "location": "RiNo Volo Sports Arena",
-        "url": "https://www.volosports.com/game/76083667-728c-4b64-b4b7-c64932a1d89a",
-        "spots": 1
-      },
-      {
-        "id": "28c1c0398a64559593a3ceed",
-        "title": "Drop In Today Sunday - Basketball - RiNo Volo Sports Arena Today 11/8 · 12PM - 12:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 1 spot",
-        "day": "Sunday",
-        "time": "12:00pm",
-        "location": "RiNo Volo Sports Arena",
-        "url": "https://www.volosports.com/game/3b80a12f-07cf-4147-8c69-a4f94b68937c",
-        "spots": 1
-      }
-    ],
+    "current": [],
     "lastErrorDate": null
   }
 }
