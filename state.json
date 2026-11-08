@@ -1,6 +1,16 @@
 {
   "initialized": true,
-  "current": [],
+  "current": [
+    {
+      "id": "ff414cdf7eeff585b6b6415d",
+      "title": "Drop In Tomorrow Sunday - Soccer - Cherry Creek / Glendale Infinity Park Tomorrow 11/8 · 4PM - 4:45PM Member pricing $10 $FREE/player Coed All Skills 7v7 2 spots",
+      "day": "Sunday",
+      "time": "4:00pm",
+      "location": "Cherry Creek / Glendale Infinity Park",
+      "url": "https://www.volosports.com/game/8e2b72cc-7343-4f5f-b76b-8bfcd84372cd",
+      "spots": 2
+    }
+  ],
   "lastErrorDate": null,
   "keepaliveMonth": "2026-11",
   "basketball": {
