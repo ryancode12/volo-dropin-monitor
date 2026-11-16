@@ -2,6 +2,15 @@
   "initialized": true,
   "current": [
     {
+      "id": "179c588dda69ecc49e0233b6",
+      "title": "Drop In Today Monday - Indoor Soccer - Golden Golden Goal Sports Complex Today 11/16 · 7:45PM - 8:30PM Member pricing $10 $FREE/player Coed All Skills 6v6 2 spots",
+      "day": "Monday",
+      "time": "7:45pm",
+      "location": "Golden Golden Goal Sports Complex",
+      "url": "https://www.volosports.com/game/b10920ab-9da9-402b-b82f-2c5f97509f96",
+      "spots": 2
+    },
+    {
       "id": "04340b49d1dad87ef8c7be8a",
       "title": "Drop In Tuesday Tuesday -Indoor 5v5 Coed Soccer - Ruby Hill Soccer Post 11/24 · 7PM - 7:45PM Member pricing $10 $FREE/player Coed All Skills 5v5 1 spot",
       "day": "Tuesday",
@@ -54,12 +63,12 @@
       },
       {
         "id": "c6d7806c863428d8df936aab",
-        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 4 spots",
+        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
         "day": "Tuesday",
         "time": "8:00pm",
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/806b479c-d442-43de-8621-55a85d102b78",
-        "spots": 4
+        "spots": 3
       }
     ],
     "lastErrorDate": null
