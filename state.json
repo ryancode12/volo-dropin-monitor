@@ -45,12 +45,12 @@
     "current": [
       {
         "id": "c06651e0fb95bb72b1e99052",
-        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 10PM - 10:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 2 spots",
+        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 10PM - 10:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
         "day": "Tuesday",
         "time": "10:00pm",
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/70fd8265-0c44-4fe2-b3a6-3ecd297da0a6",
-        "spots": 2
+        "spots": 3
       },
       {
         "id": "26950e44fb4c8be61b3a0bb3",
@@ -63,12 +63,12 @@
       },
       {
         "id": "c6d7806c863428d8df936aab",
-        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 4 spots",
+        "title": "Drop In Tomorrow Tuesday - Basketball - RiNo Volo Sports Arena Tomorrow 11/17 · 8PM - 8:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 3 spots",
         "day": "Tuesday",
         "time": "8:00pm",
         "location": "RiNo Volo Sports Arena",
         "url": "https://www.volosports.com/game/806b479c-d442-43de-8621-55a85d102b78",
-        "spots": 4
+        "spots": 3
       }
     ],
     "lastErrorDate": null
