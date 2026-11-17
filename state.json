@@ -24,17 +24,7 @@
   "keepaliveMonth": "2026-11",
   "basketball": {
     "initialized": true,
-    "current": [
-      {
-        "id": "26950e44fb4c8be61b3a0bb3",
-        "title": "Drop In Tuesday Tuesday - Basketball - RiNo Volo Sports Arena 11/24 · 10PM - 10:50PM Member pricing $10 $FREE/player Coed Social/Beginner 5v5 2 spots",
-        "day": "Tuesday",
-        "time": "10:00pm",
-        "location": "RiNo Volo Sports Arena",
-        "url": "https://www.volosports.com/game/99091769-a0eb-4acf-8580-7f87bb50274d",
-        "spots": 2
-      }
-    ],
+    "current": [],
     "lastErrorDate": null
   }
 }
