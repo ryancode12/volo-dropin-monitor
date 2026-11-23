@@ -15,17 +15,7 @@
   "keepaliveMonth": "2026-11",
   "basketball": {
     "initialized": true,
-    "current": [
-      {
-        "id": "f367c89a66104a98352fa687",
-        "title": "Drop In Tomorrow Tuesday - Basketball - DU Area University of Denver - Gates Fieldhouse Tomorrow 11/24 · 8PM - 8:50PM Member pricing $10 $FREE/player Men Skills (2) 5v5 1 spot",
-        "day": "Tuesday",
-        "time": "8:00pm",
-        "location": "Gates Fieldhouse",
-        "url": "https://www.volosports.com/game/c7966af1-2714-45c5-bf0b-e243d03a42cf",
-        "spots": 1
-      }
-    ],
+    "current": [],
     "lastErrorDate": null
   }
 }
